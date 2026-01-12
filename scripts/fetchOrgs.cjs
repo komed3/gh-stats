@@ -2,7 +2,7 @@ const { ghIterate, ghRequest } = require( '../lib/gh.cjs' );
 const { runner } = require('../lib/runner.cjs');
 const { writeJSON } = require( '../lib/storage.cjs' );
 
-await runner( async () => {
+runner( async () => {
     const orgs = [];
 
     for ( const res of await ghIterate( '/user/orgs', { per_page: 100 } ) ) {
