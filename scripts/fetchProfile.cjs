@@ -4,7 +4,7 @@ const { writeJSON } = require( '../lib/storage.cjs' );
 
 async function fetchProfile () {
     const profile = await ghRequest( `/users/${config.username}` );
-    writeJSON( 'profile.json', profile );
+    await writeJSON( 'profile.json', profile );
 }
 
 if ( require.main === module ) fetchProfile()
