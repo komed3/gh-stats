@@ -1,0 +1,18 @@
+{
+  "name": "@komed3/gh-stats",
+  "private": true,
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "GitHub Statistics Dashboard",
+  "author": {
+    "name": "komed3 (Paul Köhler)",
+    "email": "webmaster@komed3.de",
+    "url": "https://komed3.de"
+  },
+  "keywords": [
+    "github",
+    "statistics",
+    "dashboard",
+    "visualization"
+  ]
+}
