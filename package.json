@@ -17,6 +17,7 @@
   ],
   "type": "commonjs",
   "scripts": {
+    "fetchFollowers": "node scripts/fetchFollowers.cjs",
     "fetchOrgs": "node scripts/fetchOrgs.cjs",
     "fetchProfile": "node scripts/fetchProfile.cjs"
   },
