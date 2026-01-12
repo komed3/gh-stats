@@ -16,6 +16,9 @@
     "visualization"
   ],
   "type": "commonjs",
+  "scripts": {
+    "fetchProfile": "node scripts/fetchProfile.cjs"
+  },
   "dependencies": {
     "octokit": "^5.0.5"
   }
