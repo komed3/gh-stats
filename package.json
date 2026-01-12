@@ -19,7 +19,8 @@
   "scripts": {
     "fetchFollowers": "node scripts/fetchFollowers.cjs",
     "fetchOrgs": "node scripts/fetchOrgs.cjs",
-    "fetchProfile": "node scripts/fetchProfile.cjs"
+    "fetchProfile": "node scripts/fetchProfile.cjs",
+    "fetchRepos": "node scripts/fetchRepos.cjs"
   },
   "dependencies": {
     "octokit": "^5.0.5",
