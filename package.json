@@ -20,6 +20,7 @@
     "fetchProfile": "node scripts/fetchProfile.cjs"
   },
   "dependencies": {
-    "octokit": "^5.0.5"
+    "octokit": "^5.0.5",
+    "yaml": "^2.8.2"
   }
 }
