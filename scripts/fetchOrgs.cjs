@@ -7,6 +7,7 @@ runner( async () => {
 
     for ( const res of await ghIterate( '/user/orgs', { per_page: 100 } ) ) {
         for ( const org of res.data ) {
+            console.log( `... fetching org: ${ org.login } ...` );
             const { data } = await ghRequest( '/orgs/{org}', { org: org.login } );
             if ( ! data ) throw new Error( `No data returned for org: ${ org.login }` );
             orgs.push( data );
