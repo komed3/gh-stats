@@ -1,3 +1,4 @@
 username: "komed3"
 storage: "data"
+privateRepos: false
 compression: true
