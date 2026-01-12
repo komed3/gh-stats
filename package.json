@@ -17,6 +17,7 @@
   ],
   "type": "commonjs",
   "scripts": {
+    "fetchOrgs": "node scripts/fetchOrgs.cjs",
     "fetchProfile": "node scripts/fetchProfile.cjs"
   },
   "dependencies": {
