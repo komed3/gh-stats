@@ -1,4 +1,4 @@
-const { config } = require('../lib/config.cjs');
+const { config } = require( '../lib/config.cjs' );
 const { ghRequest } = require( '../lib/gh.cjs' );
 const { writeJSON } = require( '../lib/storage.cjs' );
 
