@@ -15,6 +15,7 @@
     "dashboard",
     "visualization"
   ],
+  "type": "commonjs",
   "dependencies": {
     "octokit": "^5.0.5"
   }
