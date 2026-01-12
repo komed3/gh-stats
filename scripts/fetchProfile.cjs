@@ -1,5 +1,8 @@
+const { ghRequest } = require( '../lib/gh.cjs' );
+
 async function fetchProfile () {
-    //
+    const profile = await ghRequest( '/user' );
+    console.log( profile.data );
 }
 
 if ( require.main === module ) fetchProfile()
