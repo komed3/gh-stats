@@ -188,9 +188,9 @@ runner( async () => {
     const activityConsistency = r3( contribsStdDev / avgContribsPerDay );
 
     // Meta
-    const estimatedCodingHours = r3( totalContribs * ( totalCodeSize / totalContribs / 24 ) / 60 );
-    const estimatedValueUSD = r3( estimatedCodingHours * 50 );
     const powerLevel = totalStars * 10 + totalContribs * 1 + socialReach * 5;
+    const estimatedCodingHours = r3( totalContribs * 15 / 60 );
+    const estimatedCodingValueUSD = r3( estimatedCodingHours * 50 );
 
     // Compile stats
     await writeJSON( 'stats.json', {
@@ -220,7 +220,7 @@ runner( async () => {
         activityConsistency,
 
         // Meta
-        estimatedCodingHours, estimatedValueUSD, powerLevel
+        powerLevel, estimatedCodingHours, estimatedCodingValueUSD
     } );
 
 } );
