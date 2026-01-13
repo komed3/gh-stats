@@ -168,6 +168,7 @@ runner( async () => {
     const projectMaturity = r3( ( totalPublicRepos + totalPrivateRepos ) / accountAge );
     const codeProductivity = r3( totalCodeSize / totalContribs );
     const contributionDensity = r3( totalContribs / accountAge );
+    const activityConsistency = r3( contribsStdDev / avgContribsPerDay );
 
     // Compile stats
     await writeJSON( 'stats.json', {
@@ -193,7 +194,8 @@ runner( async () => {
 
         // Coding & projects
         totalCodeSize, numLanguages, mostUsedLang, leastUsedLang, languageDiversity,
-        languageSkills, projectMaturity, codeProductivity, contributionDensity
+        languageSkills, projectMaturity, codeProductivity, contributionDensity,
+        activityConsistency
     } );
 
 } );
