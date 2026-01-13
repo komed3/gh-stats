@@ -128,6 +128,15 @@ runner( async () => {
         { period: '', count: 0 }
     );
 
+    // Radar
+    const { total: totalActivities, commit, issue, pr, review, repo } = radar;
+    const activityBreakdown = { commit, issue, pr, review, repo };
+    const { type: mostCommonActivity } = Object.entries( activityBreakdown ).reduce(
+        ( m, [ type, count ] ) => count > m.count ? { type, count } : m,
+        { type: '', count: 0 }
+    );
+
+
     // Repos
     const totalRepoSize = repos.reduce( ( s, repo ) => s + ( repo.size || 0 ), 0 );
     const forkedRepos = repos.filter( repo => repo.fork ).length;
@@ -172,7 +181,7 @@ runner( async () => {
 
         // Activity
         mostActiveWeekday, leastActiveWeekday, mostActiveHour, leastActiveHour,
-        mostActivePeriod,
+        mostActivePeriod, totalActivities, activityBreakdown, mostCommonActivity,
 
         // Repos
         totalRepoSize, forkedRepos, archivedRepos,
