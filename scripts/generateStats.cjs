@@ -1,3 +1,4 @@
+const { calculateRank } = require( '../lib/rank.cjs' );
 const { runner } = require( '../lib/runner.cjs' );
 const { readJSON, readCSV, scanDir, writeJSON } = require( '../lib/storage.cjs' );
 
@@ -189,6 +190,10 @@ runner( async () => {
 
     // Meta
     const powerLevel = totalStars * 10 + totalContribs * 1 + socialReach * 5;
+    const { rank: ghRank, level: ghLevel, percentile: ghPercentile } = calculateRank(
+        commit, pr, issue, review, totalStars, socialReach
+    );
+
     const estimatedCodingHours = r3( totalContribs * 15 / 60 );
     const estimatedCodingValueUSD = r3( estimatedCodingHours * 50 );
 
@@ -220,7 +225,8 @@ runner( async () => {
         activityConsistency,
 
         // Meta
-        powerLevel, estimatedCodingHours, estimatedCodingValueUSD
+        powerLevel, ghRank, ghLevel, ghPercentile, estimatedCodingHours,
+        estimatedCodingValueUSD
     } );
 
 } );
