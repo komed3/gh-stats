@@ -185,6 +185,9 @@ runner( async () => {
     const contributionDensity = r3( totalContribs / accountAge );
     const activityConsistency = r3( contribsStdDev / avgContribsPerDay );
 
+    // Calculations
+    // ...
+
     // Compile stats
     await writeJSON( 'stats.json', {
         // Profile stats
@@ -211,6 +214,9 @@ runner( async () => {
         totalCodeSize, numLanguages, mostUsedLang, leastUsedLang, languageDiversity,
         languageSkills, projectMaturity, codeProductivity, contributionDensity,
         activityConsistency
+
+        // Calculations
+        // ...
     } );
 
 } );
