@@ -129,9 +129,9 @@ runner( async () => {
     );
 
     // Repos
-    const totalRepoSize = repos.reduce( ( s, r ) => s + ( r.size || 0 ), 0 );
-    const forkedRepos = repos.filter( r => r.fork ).length;
-    const archivedRepos = repos.filter( r => r.archived ).length;
+    const totalRepoSize = repos.reduce( ( s, repo ) => s + ( repo.size || 0 ), 0 );
+    const forkedRepos = repos.filter( repo => repo.fork ).length;
+    const archivedRepos = repos.filter( repo => repo.archived ).length;
 
     // Profile
     const totalPublicRepos = profile.public_repos || 0;
@@ -149,12 +149,21 @@ runner( async () => {
     const diskUsage = profile.disk_usage || 0;
     const spaceUsed = profile.plan?.space || 0;
 
+    // Social
+    const numFollowers = followers.length;
+    const numOrgs = orgs.length;
+    const totalOrgFollowers = orgs.reduce( ( s, org ) => s + ( org.followers || 0 ), 0 );
+    const socialReach = numFollowers + totalOrgFollowers;
+
     // Compile stats
     await writeJSON( 'stats.json', {
         // Profile stats
         totalPublicRepos, totalPrivateRepos, totalGists, totalFollowers, totalFollowing,
         accountAge, twoFactorEnabled, hasBlog, hasLocation, hasEmail, bioLength,
         planName, diskUsage, spaceUsed,
+
+        // Social
+        numFollowers, numOrgs, totalOrgFollowers, socialReach,
 
         // Contribs
         totalContribs, avgContribsPerDay, contribsMedian, contribsStdDev, yearlyTotals,
