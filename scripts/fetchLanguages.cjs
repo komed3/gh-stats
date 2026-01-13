@@ -12,7 +12,7 @@ runner( async () => {
 
             console.log( `... fetching languages for repo: ${ repo.full_name } ...` );
             const { data } = await ghRequest( '/repos/{owner}/{repo}/languages', { owner: repo.owner.login, repo: repo.name } );
-            if ( ! data || ! data.keys().length ) continue;
+            if ( ! data || ! Object.keys( data ).length ) continue;
 
             for ( const [ lang, size ] of Object.entries( data ) ) {
                 if ( ! langs[ lang ] ) langs[ lang ] = size;
