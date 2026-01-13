@@ -24,7 +24,8 @@
     "fetchOrgs": "node scripts/fetchOrgs.cjs",
     "fetchProfile": "node scripts/fetchProfile.cjs",
     "fetchRepos": "node scripts/fetchRepos.cjs",
-    "fetchYear": "node scripts/fetchYear.cjs"
+    "fetchYear": "node scripts/fetchYear.cjs",
+    "generateStats": "node scripts/generateStats.cjs"
   },
   "dependencies": {
     "csv-string": "^4.1.1",
