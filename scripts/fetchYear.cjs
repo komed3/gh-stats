@@ -44,5 +44,5 @@ runner( async () => {
     }
 
     console.log( `Fetched ${ ( days.length - 1 ) } days of contributions.` );
-    writeCSV( `contrib/${year}.csv`, days );
+    writeCSV( `year/${year}.csv`, days );
 } );
