@@ -9,6 +9,7 @@ runner( async () => {
         return rows.map( r => Object.fromEntries( headers.map( ( h, i ) => [ h, r[ i ] ] ) ) );
     }
 
+    // Load data
     const profile = await readJSON( 'profile.json' );
     const repos = await readJSON( 'repos.json' ) || [];
     const languages = await readJSON( 'languages.json' ) || {};
@@ -17,4 +18,12 @@ runner( async () => {
     const followers = await readJSON( 'follower.json' ) || [];
     const orgs = await readJSON( 'orgs.json' ) || [];
     const radar = await readJSON( 'radar.json' );
+
+    // Scan year directory
+    const yearData = Object.fromEntries(
+        await Promise.all( ( await scanDir('year' ) ).map( async file => [
+            file.replace( '.csv', '' ), parseCSVToObjects( await readCSV( `year/${file}` ) )
+        ] ) )
+    );
+
 } );
