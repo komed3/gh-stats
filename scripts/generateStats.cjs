@@ -131,35 +131,12 @@ runner( async () => {
     const diskUsage = profile.disk_usage || 0;
     const spaceUsed = profile.plan?.space || 0;
 
-    // Account health
-    const accountHealth = r3(
-        0.40 * (
-            0.6 * (
-                0.7 * Math.log10( 1 + totalPublicRepos ) / Math.log10( 101 ) +
-                0.3 * Math.log10( 1 + totalPrivateRepos ) / Math.log10( 101 )
-            ) +
-            0.2 * Math.log10( 1 + totalGists ) / Math.log10( 101 ) +
-            0.2 * ( spaceUsed > 0 ? Math.max( 0, Math.min( 1, diskUsage / spaceUsed ) ) : 0 )
-        ) +
-        0.30 * (
-            0.2 * +hasBlog + 0.2 * +hasLocation + 0.2 * +hasEmail + 0.2 * +twoFactorEnabled +
-            0.2 * Math.max( 0, Math.min( 1, bioLength / 160 ) )
-        ) +
-        0.20 * (
-            0.8 * Math.log10( 1 + totalFollowers ) / Math.log10( 501 ) +
-            0.2 * ( totalFollowing > 0 ? Math.max(
-                0, Math.min( 1, totalFollowers / totalFollowing )
-            ) : 0 )
-        ) +
-        0.10 * Math.max( 0, Math.min( 1, accountAge / 3650 ) )
-    );
-
     // Compile stats
     await writeJSON( 'stats.json', {
         // Profile stats
         totalPublicRepos, totalPrivateRepos, totalGists, totalFollowers, totalFollowing,
         accountAge, twoFactorEnabled, hasBlog, hasLocation, hasEmail, bioLength,
-        planName, diskUsage, spaceUsed, accountHealth,
+        planName, diskUsage, spaceUsed,
 
         // Contribs
         totalContribs, avgContribsPerDay, contribsMedian, contribsStdDev, yearlyTotals,
