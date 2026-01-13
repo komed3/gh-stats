@@ -128,6 +128,11 @@ runner( async () => {
         { period: '', count: 0 }
     );
 
+    // Repos
+    const totalRepoSize = repos.reduce( ( s, r ) => s + ( r.size || 0 ), 0 );
+    const forkedRepos = repos.filter( r => r.fork ).length;
+    const archivedRepos = repos.filter( r => r.archived ).length;
+
     // Profile
     const totalPublicRepos = profile.public_repos || 0;
     const totalPrivateRepos = profile.total_private_repos || 0;
@@ -159,6 +164,9 @@ runner( async () => {
         // Activity
         mostActiveWeekday, leastActiveWeekday, mostActiveHour, leastActiveHour,
         mostActivePeriod,
+
+        // Repos
+        totalRepoSize, forkedRepos, archivedRepos,
 
         // Coding languages
         totalCodeSize, numLanguages, mostUsedLang, leastUsedLang, languageDiversity,
