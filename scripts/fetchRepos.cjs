@@ -8,12 +8,14 @@ runner( async () => {
 
     for ( const res of await ghIterate( '/user/repos', { per_page: 100, affiliation: 'owner' } ) ) {
         for ( const repo of res.data ) {
+            if ( ! config.privateRepos && repo.private ) continue;
+
             console.log( `... fetching repo: ${ repo.full_name } ...` );
             const { data } = await ghRequest( '/repos/{owner}/{repo}', { owner: repo.owner.login, repo: repo.name } );
             if ( ! data ) throw new Error( `No data returned for repo: ${ repo.full_name }` );
 
-            if ( ! data.private ) publicRepos.push( data );
-            else if ( config.privateRepos ) privateRepos.push( data );
+            if ( data.private ) privateRepos.push( data );
+            else publicRepos.push( data );
         }
     }
 
