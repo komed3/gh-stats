@@ -32,6 +32,8 @@ runner( async () => {
     const days = [ [ 'date', 'weekday', 'count', 'color', 'level' ] ];
     for ( const week of collection.contributionCalendar.weeks ) {
         for ( const day of week.contributionDays ) {
+            if ( new Date( day.date ).getFullYear() !== year ) continue;
+
             days.push( [
                 day.date, day.weekday, day.contributionCount, day.color,
                 Math.max( [ 'NONE', 'FIRST', 'SECOND', 'THIRD', 'FOURTH' ].indexOf(
@@ -41,6 +43,6 @@ runner( async () => {
         }
     }
 
-    console.log( `Fetched ${days.length} days of contributions.` );
+    console.log( `Fetched ${ ( days.length - 1 ) } days of contributions.` );
     writeCSV( `contrib/${year}.csv`, days );
 } );
