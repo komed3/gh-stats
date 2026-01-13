@@ -17,6 +17,7 @@
   ],
   "type": "commonjs",
   "scripts": {
+    "fetchActivities": "node scripts/fetchActivities.cjs",
     "fetchFollowers": "node scripts/fetchFollowers.cjs",
     "fetchLanguages": "node scripts/fetchLanguages.cjs",
     "fetchOrgs": "node scripts/fetchOrgs.cjs",
@@ -24,6 +25,7 @@
     "fetchRepos": "node scripts/fetchRepos.cjs"
   },
   "dependencies": {
+    "csv-string": "^4.1.1",
     "octokit": "^5.0.5",
     "yaml": "^2.8.2"
   }
