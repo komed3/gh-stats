@@ -87,6 +87,21 @@ runner( async () => {
         p => [ `p${p}`, counts[ Math.floor( p / 100 * ( counts.length - 1 ) ) ] ]
     ) );
 
+    // Trend calculations
+    const linearRegression = ( data ) => {
+        const { n, x, y, sumX, sumY } = Object.entries( data ).reduce( ( acc, [ y, t ] ) => {
+            acc.x.push( +y ); acc.y.push( +t ); acc.n++; acc.sumX += +y; acc.sumY += +t;
+            return acc;
+        }, { x: [], y: [], n: 0, sumX: 0, sumY: 0 } );
+
+        const sumXY = x.reduce( ( s, xi, i ) => s + xi * y[ i ], 0 );
+        const sumXX = x.reduce( ( s, xi ) => s + xi * xi, 0 );
+
+        return r3( ( n * sumXY - sumX * sumY ) / ( n * sumXX - sumX * sumX ) );
+    };
+
+    const commitTrend = linearRegression( yearlyTotals );
+
     // Language calculations
     const codeExtrema = ( data ) => data.reduce( ( acc, [ lang, size ] ) => {
         if ( size > acc.max.size ) acc.max = { lang, size };
@@ -170,21 +185,6 @@ runner( async () => {
     const contributionDensity = r3( totalContribs / accountAge );
     const activityConsistency = r3( contribsStdDev / avgContribsPerDay );
 
-    // Trend calculations
-    const linearRegression = ( data ) => {
-        const { n, x, y, sumX, sumY } = Object.entries( data ).reduce( ( acc, [ y, t ] ) => {
-            acc.x.push( +y ); acc.y.push( +t ); acc.n++; acc.sumX += +y; acc.sumY += +t;
-            return acc;
-        }, { x: [], y: [], n: 0, sumX: 0, sumY: 0 } );
-
-        const sumXY = x.reduce( ( s, xi, i ) => s + xi * y[ i ], 0 );
-        const sumXX = x.reduce( ( s, xi ) => s + xi * xi, 0 );
-
-        return r3( ( n * sumXY - sumX * sumY ) / ( n * sumXX - sumX * sumX ) );
-    };
-
-    const commitTrend = linearRegression( yearlyTotals );
-
     // Compile stats
     await writeJSON( 'stats.json', {
         // Profile stats
@@ -198,7 +198,7 @@ runner( async () => {
         // Contribs
         totalContribs, avgContribsPerDay, avgContribsPerYear, contribsMedian, contribsStdDev,
         yearlyTotals, yearlyAvgs, longestStreak, currentStreak, busiestDay, leastActiveDay,
-        contribPercentiles,
+        contribPercentiles, commitTrend,
 
         // Activity
         mostActiveWeekday, leastActiveWeekday, mostActiveHour, leastActiveHour,
@@ -210,7 +210,7 @@ runner( async () => {
         // Coding & projects
         totalCodeSize, numLanguages, mostUsedLang, leastUsedLang, languageDiversity,
         languageSkills, projectMaturity, codeProductivity, contributionDensity,
-        activityConsistency, commitTrend
+        activityConsistency
     } );
 
 } );
