@@ -31,8 +31,8 @@ runner( async () => {
     );
 
     // Contribution calculations
-    const calcTotalContribs = ( data ) => data.reduce( ( s, r ) => s + parseInt( r.count || 0 ), 0 );
-    const calcAvg = ( data ) => round( calcTotalContribs( data ) / data.length );
+    const calcTotal = ( data ) => data.reduce( ( s, r ) => s + parseInt( r.count || 0 ), 0 );
+    const calcAvg = ( data ) => round( calcTotal( data ) / data.length );
 
     const calcStdDev = ( data ) => {
         const counts = data.map( r => parseInt( r.count || 0 ) );
@@ -64,11 +64,16 @@ runner( async () => {
         leastActiveDay: { date: '', count: Infinity }
     } );
 
-    const totalContribs = calcTotalContribs( yearData );
+    const totalContribs = calcTotal( yearData );
     const avgPerDay = calcAvg( yearData );
     const { mean, stdDev } = calcStdDev( yearData );
     const median = calcMedian( yearData );
     const { busiestDay, leastActiveDay } = findExtrema( yearData );
     const { longestStreak, currentStreak } = calcStreak( yearData );
+
+    // Yearly contribution
+    const years = Object.keys( yearData ).sort();
+    const yearlyTotals = Object.fromEntries( years.map( y => [ y, calcTotal( yearData[ y ] ) ] ) );
+    const yearlyAvgs = Object.fromEntries( years.map( y => [ y, calcAvg( yearData[ y ] ) ] ) );
 
 } );
