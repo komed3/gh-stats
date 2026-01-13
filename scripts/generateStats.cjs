@@ -86,10 +86,41 @@ runner( async () => {
         p => [ `p${p}`, counts[ Math.floor( p / 100 * ( counts.length - 1 ) ) ] ]
     ) );
 
+    // Language calculations
+    const codeExtrema = ( data ) => data.reduce( ( acc, [ lang, size ] ) => {
+        if ( size > acc.max.size ) acc.max = { lang, size };
+        if ( size < acc.min.size ) acc.min = { lang, size };
+        return acc;
+    }, {
+        max: { lang: '', size: 0 },
+        min: { lang: '', size: Infinity }
+    } );
+
+    const skillLevel = ( size ) => size > 1e6 ? 'Expert' : size > 25e4 ? 'Advanced' :
+        size > 5e4 ? 'Intermediate' : 'Beginner';
+
+    const skills = ( data, max ) => Object.fromEntries( data.map( ( [ lang, size ] ) => [
+        lang, { level: skillLevel( size ), weight: r3( ( size / max ) * 100 ) }
+    ] ) );
+
+    const diversity = ( data, total ) => r3( -data.reduce( ( s, [ , size ] ) => {
+        const p = size / total; return s + p * Math.log2( p );
+    }, 0 ) );
+
+    const langEntries = Object.entries( languages );
+    const numLanguages = langEntries.length;
+    const totalCodeSize = langEntries.reduce( ( s, [, size ] ) => s + size, 0 );
+    const { max: mostUsedLang, min: leastUsedLang } = codeExtrema( langEntries );
+    const maxLangSize = mostUsedLang.size;
+    const languageSkills = skills( langEntries, maxLangSize );
+    const languageDiversity = diversity( langEntries, totalCodeSize );
+
     // Compile stats
     await writeJSON( 'stats.json', {
-        totalContribs, avgContribsPerDay, contribsMedian, contribsStdDev, yearlyTotals, yearlyAvgs,
-        longestStreak, currentStreak, busiestDay, leastActiveDay, contribPercentiles
+        totalContribs, avgContribsPerDay, contribsMedian, contribsStdDev, yearlyTotals,
+        yearlyAvgs, longestStreak, currentStreak, busiestDay, leastActiveDay,
+        contribPercentiles, totalCodeSize, numLanguages, mostUsedLang, leastUsedLang,
+        languageDiversity, languageSkills
     } );
 
 } );
