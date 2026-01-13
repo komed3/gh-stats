@@ -17,11 +17,11 @@
   ],
   "type": "commonjs",
   "scripts": {
+    "fetchContribs": "node scripts/fetchContribs.cjs",
     "fetchFollowers": "node scripts/fetchFollowers.cjs",
     "fetchLanguages": "node scripts/fetchLanguages.cjs",
     "fetchOrgs": "node scripts/fetchOrgs.cjs",
     "fetchProfile": "node scripts/fetchProfile.cjs",
-    "fetchRadar": "node scripts/fetchRadar.cjs",
     "fetchRepos": "node scripts/fetchRepos.cjs",
     "fetchYear": "node scripts/fetchYear.cjs"
   },
