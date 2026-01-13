@@ -71,6 +71,7 @@ runner( async () => {
 
     const totalContribs = calcTotal( filteredData );
     const avgContribsPerDay = calcAvg( filteredData );
+    const avgContribsPerYear = avgContribsPerDay * 365.25;
     const contribsStdDev = calcStdDev( filteredData );
     const contribsMedian = calcMedian( filteredData );
     const { max: busiestDay, min: leastActiveDay } = findExtrema( reversedData );
@@ -136,7 +137,6 @@ runner( async () => {
         { type: '', count: 0 }
     );
 
-
     // Repos
     const totalRepoSize = repos.reduce( ( s, repo ) => s + ( repo.size || 0 ), 0 );
     const forkedRepos = repos.filter( repo => repo.fork ).length;
@@ -164,6 +164,11 @@ runner( async () => {
     const totalOrgFollowers = orgs.reduce( ( s, org ) => s + ( org.followers || 0 ), 0 );
     const socialReach = numFollowers + totalOrgFollowers;
 
+    // Projects
+    const projectMaturity = r3( ( totalPublicRepos + totalPrivateRepos ) / accountAge );
+    const codeProductivity = r3( totalCodeSize / totalContribs );
+    const contributionDensity = r3( totalContribs / accountAge );
+
     // Compile stats
     await writeJSON( 'stats.json', {
         // Profile stats
@@ -175,8 +180,8 @@ runner( async () => {
         numFollowers, numOrgs, totalOrgFollowers, socialReach,
 
         // Contribs
-        totalContribs, avgContribsPerDay, contribsMedian, contribsStdDev, yearlyTotals,
-        yearlyAvgs, longestStreak, currentStreak, busiestDay, leastActiveDay,
+        totalContribs, avgContribsPerDay, avgContribsPerYear, contribsMedian, contribsStdDev,
+        yearlyTotals, yearlyAvgs, longestStreak, currentStreak, busiestDay, leastActiveDay,
         contribPercentiles,
 
         // Activity
@@ -186,9 +191,9 @@ runner( async () => {
         // Repos
         totalRepoSize, forkedRepos, archivedRepos,
 
-        // Coding languages
+        // Coding & projects
         totalCodeSize, numLanguages, mostUsedLang, leastUsedLang, languageDiversity,
-        languageSkills
+        languageSkills, projectMaturity, codeProductivity, contributionDensity
     } );
 
 } );
