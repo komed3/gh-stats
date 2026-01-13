@@ -115,6 +115,19 @@ runner( async () => {
     const languageSkills = skills( langEntries, maxLangSize );
     const languageDiversity = diversity( langEntries, totalCodeSize );
 
+    // Activity
+    const arrMaxMin = ( data ) => ( {
+        max: data.indexOf( Math.max( ...data ) ),
+        min: data.indexOf( Math.min( ...data ) )
+    } );
+
+    const { max: mostActiveWeekday, min: leastActiveWeekday } = arrMaxMin( activity.weekdays );
+    const { max: mostActiveHour, min: leastActiveHour } = arrMaxMin( activity.hours );
+    const { period: mostActivePeriod } = Object.entries( activity.periods ).reduce(
+        ( m, [ period, count ] ) => count > m.count ? { period, count } : m,
+        { period: '', count: 0 }
+    );
+
     // Profile
     const totalPublicRepos = profile.public_repos || 0;
     const totalPrivateRepos = profile.total_private_repos || 0;
@@ -143,9 +156,13 @@ runner( async () => {
         yearlyAvgs, longestStreak, currentStreak, busiestDay, leastActiveDay,
         contribPercentiles,
 
+        // Activity
+        mostActiveWeekday, leastActiveWeekday, mostActiveHour, leastActiveHour,
+        mostActivePeriod,
+
         // Coding languages
-        totalCodeSize, numLanguages, mostUsedLang, leastUsedLang,
-        languageDiversity, languageSkills
+        totalCodeSize, numLanguages, mostUsedLang, leastUsedLang, languageDiversity,
+        languageSkills
     } );
 
 } );
