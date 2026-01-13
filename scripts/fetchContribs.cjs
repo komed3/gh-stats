@@ -15,7 +15,7 @@ runner( async () => {
             commit: totalCommitContributions
             issue: totalIssueContributions
             pr: totalPullRequestContributions
-            rewiew: totalPullRequestReviewContributions
+            review: totalPullRequestReviewContributions
             repo: totalRepositoryContributions
             contributionCalendar {
                 weeks { contributionDays {
