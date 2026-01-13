@@ -17,6 +17,7 @@
   ],
   "type": "commonjs",
   "scripts": {
+    "fetchActivity": "node scripts/fetchActivity.cjs",
     "fetchContribs": "node scripts/fetchContribs.cjs",
     "fetchFollowers": "node scripts/fetchFollowers.cjs",
     "fetchLanguages": "node scripts/fetchLanguages.cjs",
