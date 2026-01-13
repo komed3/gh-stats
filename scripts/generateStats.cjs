@@ -188,7 +188,9 @@ runner( async () => {
     const activityConsistency = r3( contribsStdDev / avgContribsPerDay );
 
     // Meta
-    // ...
+    const estimatedCodingHours = r3( totalContribs * ( totalCodeSize / totalContribs / 24 ) / 60 );
+    const estimatedValueUSD = r3( estimatedCodingHours * 50 );
+    const powerLevel = totalStars * 10 + totalContribs * 1 + socialReach * 5;
 
     // Compile stats
     await writeJSON( 'stats.json', {
@@ -215,10 +217,10 @@ runner( async () => {
         // Coding & projects
         totalCodeSize, numLanguages, mostUsedLang, leastUsedLang, languageDiversity,
         languageSkills, projectMaturity, codeProductivity, contributionDensity,
-        activityConsistency
+        activityConsistency,
 
         // Meta
-        // ...
+        estimatedCodingHours, estimatedValueUSD, powerLevel
     } );
 
 } );
