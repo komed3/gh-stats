@@ -41,7 +41,7 @@ runner( async () => {
 
     const weekdays = new Array( 7 ).fill( 0 );
     const hours = new Array( 24 ).fill( 0 );
-    const heatmap = new Array( 7 ).fill( new Array( 24 ).fill( 0 ) );
+    const heatmap = Array.from( { length: 7 }, () => Array( 24 ).fill( 0 ) );
     const periods = { morning: 0, daytime: 0, evening: 0, night: 0 };
 
     for ( const repo of repos ) {
@@ -50,7 +50,7 @@ runner( async () => {
 
         for ( const commit of history ) {
             const date = new Date( commit.committedDate );
-            const wd = date.getDay();
+            const wd = ( date.getDay() + 6 ) % 7;
             const hour = date.getUTCHours();
 
             weekdays[ wd ]++;
@@ -67,14 +67,10 @@ runner( async () => {
     const total = weekdays.reduce( ( a, b ) => a + b, 0 );
     const weekdaysPct = weekdays.map( d => Number( ( d / total * 100 ).toFixed( 3 ) ) );
     const hoursPct = hours.map( h => Number( ( h / total * 100 ).toFixed( 3 ) ) );
+    const heatmapPct = heatmap.map( wd => wd.map( h => Number( ( h / total * 100 ).toFixed( 3 ) ) ) );
     const periodsPct = Object.fromEntries( Object.entries( periods ).map(
         ( [ k, v ] ) => [ k, Number( ( v / total * 100 ).toFixed( 3 ) ) ]
     ) );
-
-    const heatmapPct = heatmap.map( wd => {
-        const wdTotal = wd.reduce( ( a, b ) => a + b, 0 );
-        return wd.map( h => Number( ( h / wdTotal * 100 ).toFixed( 3 ) ) );
-    } );
 
     writeJSON( 'activity.json', {
         weekdays, weekdaysPct, hours, hoursPct, heatmap, heatmapPct,
