@@ -3,6 +3,7 @@ const { readJSON, readCSV, scanDir, writeJSON } = require( '../lib/storage.cjs' 
 
 runner( async () => {
     const r3 = ( v ) => Number( v.toFixed( 3 ) );
+    const sortedCounts = ( data ) => data.map( r => r.count ).sort( ( a, b ) => a - b );
 
     // Load data
     const profile = await readJSON( 'profile.json' );
@@ -25,20 +26,21 @@ runner( async () => {
 
     const years = Object.keys( yearData ).sort();
     const filteredData = years.flatMap( y => yearData[ y ] );
+    const reversedData = structuredClone( filteredData ).reverse();
 
     // Contribution calculations
-    const calcTotal = ( data ) => data.reduce( ( s, r ) => s + parseInt( r.count || 0 ), 0 );
+    const calcTotal = ( data ) => data.reduce( ( s, r ) => s + r.count, 0 );
     const calcAvg = ( data ) => r3( calcTotal( data ) / data.length );
 
     const calcStdDev = ( data ) => {
-        const counts = data.map( r => parseInt( r.count || 0 ) );
+        const counts = data.map( r => r.count );
         const mean = counts.reduce( ( a, b ) => a + b, 0 ) / counts.length;
         const variance = counts.reduce( ( s, c ) => s + Math.pow( c - mean, 2 ), 0 ) / counts.length;
         return r3( Math.sqrt( variance ) );
     };
 
     const calcMedian = ( data ) => {
-        const counts = data.map( r => parseInt( r.count || 0 ) ).sort( ( a, b ) => a - b );
+        const counts = sortedCounts( data );
         const mid = Math.floor( counts.length / 2 );
         return counts.length % 2 !== 0 ? counts[ mid ] : r3(
             ( counts[ mid - 1 ] + counts[ mid ] ) / 2
@@ -71,17 +73,23 @@ runner( async () => {
     const avgContribsPerDay = calcAvg( filteredData );
     const contribsStdDev = calcStdDev( filteredData );
     const contribsMedian = calcMedian( filteredData );
-    const { max: busiestDay, min: leastActiveDay } = findExtrema( filteredData );
+    const { max: busiestDay, min: leastActiveDay } = findExtrema( reversedData );
     const { longest: longestStreak, current: currentStreak } = calcStreak( filteredData );
 
     // Yearly contribution
     const yearlyTotals = Object.fromEntries( years.map( y => [ y, calcTotal( yearData[ y ] ) ] ) );
     const yearlyAvgs = Object.fromEntries( years.map( y => [ y, calcAvg( yearData[ y ] ) ] ) );
 
+    // Percentiles
+    const counts = sortedCounts( filteredData );
+    const contribPercentiles = Object.fromEntries( [ 50, 75, 90, 95, 99 ].map(
+        p => [ `p${p}`, counts[ Math.floor( p / 100 * ( counts.length - 1 ) ) ] ]
+    ) );
+
     // Compile stats
     await writeJSON( 'stats.json', {
-        totalContribs, avgContribsPerDay, contribsMedian, contribsStdDev, yearlyTotals,
-        yearlyAvgs, longestStreak, currentStreak, busiestDay, leastActiveDay
+        totalContribs, avgContribsPerDay, contribsMedian, contribsStdDev, yearlyTotals, yearlyAvgs,
+        longestStreak, currentStreak, busiestDay, leastActiveDay, contribPercentiles
     } );
 
 } );
