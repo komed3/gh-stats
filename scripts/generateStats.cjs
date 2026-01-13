@@ -125,7 +125,7 @@ runner( async () => {
     const { max: mostActiveWeekday, min: leastActiveWeekday } = arrMaxMin( activity.weekdays );
     const { max: mostActiveHour, min: leastActiveHour } = arrMaxMin( activity.hours );
     const { period: mostActivePeriod } = Object.entries( activity.periods ).reduce(
-        ( m, [ period, count ] ) => count > m.count ? { period, count } : m,
+        ( acc, [ period, count ] ) => count > acc.count ? { period, count } : acc,
         { period: '', count: 0 }
     );
 
@@ -133,7 +133,7 @@ runner( async () => {
     const { total: totalActivities, commit, issue, pr, review, repo } = radar;
     const activityBreakdown = { commit, issue, pr, review, repo };
     const { type: mostCommonActivity } = Object.entries( activityBreakdown ).reduce(
-        ( m, [ type, count ] ) => count > m.count ? { type, count } : m,
+        ( acc, [ type, count ] ) => count > acc.count ? { type, count } : acc,
         { type: '', count: 0 }
     );
 
@@ -170,6 +170,21 @@ runner( async () => {
     const contributionDensity = r3( totalContribs / accountAge );
     const activityConsistency = r3( contribsStdDev / avgContribsPerDay );
 
+    // Trend calculations
+    const linearRegression = ( data ) => {
+        const { n, x, y, sumX, sumY } = Object.entries( data ).reduce( ( acc, [ y, t ] ) => {
+            acc.x.push( +y ); acc.y.push( +t ); acc.n++; acc.sumX += +y; acc.sumY += +t;
+            return acc;
+        }, { x: [], y: [], n: 0, sumX: 0, sumY: 0 } );
+
+        const sumXY = x.reduce( ( s, xi, i ) => s + xi * y[ i ], 0 );
+        const sumXX = x.reduce( ( s, xi ) => s + xi * xi, 0 );
+
+        return r3( ( n * sumXY - sumX * sumY ) / ( n * sumXX - sumX * sumX ) );
+    };
+
+    const commitTrend = linearRegression( yearlyTotals );
+
     // Compile stats
     await writeJSON( 'stats.json', {
         // Profile stats
@@ -195,7 +210,7 @@ runner( async () => {
         // Coding & projects
         totalCodeSize, numLanguages, mostUsedLang, leastUsedLang, languageDiversity,
         languageSkills, projectMaturity, codeProductivity, contributionDensity,
-        activityConsistency
+        activityConsistency, commitTrend
     } );
 
 } );
