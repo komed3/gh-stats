@@ -50,30 +50,36 @@ runner( async () => {
     };
 
     const calcStreak = ( data ) => data.reduce( ( acc, { count } ) => {
-        count > 0 ? acc.currentStreak++ : ( acc.currentStreak = 0 );
-        acc.longestStreak = Math.max( acc.longestStreak, acc.currentStreak );
+        count > 0 ? acc.current++ : ( acc.current = 0 );
+        acc.longest = Math.max( acc.longest, acc.current );
         return acc;
-    }, { longestStreak: 0, currentStreak: 0 } );
+    }, { longest: 0, current: 0 } );
 
     const findExtrema = ( data ) => data.reduce( ( acc, { count, date } ) => {
-        if ( count > acc.busiest.count ) acc.busiest = { date, count };
-        if ( count < acc.leastActive.count ) acc.leastActive = { date, count };
+        if ( count > acc.max.count ) acc.max = { date, count };
+        if ( count < acc.min.count ) acc.min = { date, count };
         return acc;
     }, {
-        busiestDay: { date: '', count: 0 },
-        leastActiveDay: { date: '', count: Infinity }
+        max: { date: '', count: 0 },
+        min: { date: '', count: Infinity }
     } );
 
     const totalContribs = calcTotal( yearData );
-    const avgPerDay = calcAvg( yearData );
-    const { mean, stdDev } = calcStdDev( yearData );
-    const median = calcMedian( yearData );
-    const { busiestDay, leastActiveDay } = findExtrema( yearData );
-    const { longestStreak, currentStreak } = calcStreak( yearData );
+    const avgContribsPerDay = calcAvg( yearData );
+    const { mean: contribsMean, stdDev: contribsStdDev } = calcStdDev( yearData );
+    const contribsMedian = calcMedian( yearData );
+    const { max: busiestDay, min: leastActiveDay } = findExtrema( yearData );
+    const { longest: longestStreak, current: currentStreak } = calcStreak( yearData );
 
     // Yearly contribution
     const years = Object.keys( yearData ).sort();
     const yearlyTotals = Object.fromEntries( years.map( y => [ y, calcTotal( yearData[ y ] ) ] ) );
     const yearlyAvgs = Object.fromEntries( years.map( y => [ y, calcAvg( yearData[ y ] ) ] ) );
+
+    // Compile stats
+    await writeJSON( 'stats.json', {
+        totalContribs, avgContribsPerDay, contribsMedian, contribsMean, contribsStdDev,
+        yearlyTotals, yearlyAvgs, longestStreak, currentStreak, busiestDay, leastActiveDay
+    } );
 
 } );
