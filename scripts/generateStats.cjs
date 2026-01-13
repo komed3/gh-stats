@@ -178,6 +178,8 @@ runner( async () => {
     const numOrgs = orgs.length;
     const totalOrgFollowers = orgs.reduce( ( s, org ) => s + ( org.followers || 0 ), 0 );
     const socialReach = numFollowers + totalOrgFollowers;
+    const totalStars = repos.reduce( ( s, r ) => s + ( r.stargazers_count || 0 ), 0 );
+    const totalWatchers = repos.reduce( ( s, r ) => s + ( r.watchers_count || 0 ), 0 );
 
     // Projects
     const projectMaturity = r3( ( totalPublicRepos + totalPrivateRepos ) / accountAge );
@@ -185,7 +187,7 @@ runner( async () => {
     const contributionDensity = r3( totalContribs / accountAge );
     const activityConsistency = r3( contribsStdDev / avgContribsPerDay );
 
-    // Calculations
+    // Meta
     // ...
 
     // Compile stats
@@ -196,7 +198,7 @@ runner( async () => {
         planName, diskUsage, spaceUsed,
 
         // Social
-        numFollowers, numOrgs, totalOrgFollowers, socialReach,
+        numFollowers, numOrgs, totalOrgFollowers, socialReach, totalStars, totalWatchers,
 
         // Contribs
         totalContribs, avgContribsPerDay, avgContribsPerYear, contribsMedian, contribsStdDev,
@@ -215,7 +217,7 @@ runner( async () => {
         languageSkills, projectMaturity, codeProductivity, contributionDensity,
         activityConsistency
 
-        // Calculations
+        // Meta
         // ...
     } );
 
