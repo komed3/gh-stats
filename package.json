@@ -18,6 +18,7 @@
   "type": "commonjs",
   "scripts": {
     "fetchFollowers": "node scripts/fetchFollowers.cjs",
+    "fetchLanguages": "node scripts/fetchLanguages.cjs",
     "fetchOrgs": "node scripts/fetchOrgs.cjs",
     "fetchProfile": "node scripts/fetchProfile.cjs",
     "fetchRepos": "node scripts/fetchRepos.cjs"
