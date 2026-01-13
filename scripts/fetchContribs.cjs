@@ -13,7 +13,7 @@ runner( async () => {
     const to = new Date( year, 11, 31, 23, 59, 59 ).toISOString();
     const username = config.username;
 
-    console.log( `Fetching detailed activities for ${username} in ${year}` );
+    console.log( `Fetching detailed contributions for ${username} in ${year}` );
     const response = await ghGraphql( `query( $username: String!, $from: DateTime!, $to: DateTime! ) {
         user( login: $username ) { contributionsCollection( from: $from, to: $to ) {
             contributionCalendar { weeks { contributionDays {
@@ -42,5 +42,5 @@ runner( async () => {
     }
 
     console.log( `Fetched ${days.length} days of contributions.` );
-    writeCSV( `activity_${year}.csv`, days );
+    writeCSV( `contrib/${year}.csv`, days );
 } );
