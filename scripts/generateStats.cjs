@@ -20,9 +20,11 @@ runner( async () => {
     const radar = await readJSON( 'radar.json' );
 
     // Scan year directory
+    const currTime = new Date();
     const yearData = Object.fromEntries(
         await Promise.all( ( await scanDir('year' ) ).map( async file => [
-            file.replace( '.csv', '' ), parseCSVToObjects( await readCSV( `year/${file}` ) )
+            file.replace( '.csv', '' ), parseCSVToObjects( await readCSV( `year/${file}` )
+                .filter( r => new Date( r.date ) <= currTime ) )
         ] ) )
     );
 
