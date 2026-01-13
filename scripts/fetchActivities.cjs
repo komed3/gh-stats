@@ -34,9 +34,9 @@ runner( async () => {
         for ( const day of week.contributionDays ) {
             days.push( [
                 day.date, day.weekday, day.contributionCount, day.color,
-                [ 'NONE', 'FIRST', 'SECOND', 'THIRD', 'FOURTH' ].indexOf(
-                    day.contributionLevel.split( '_' ).pop()
-                ) ?? 0
+                Math.min( [ 'NONE', 'FIRST', 'SECOND', 'THIRD', 'FOURTH' ].indexOf(
+                    day.contributionLevel.split( '_' ).shift()
+                ) ?? 0, 0 )
             ] );
         }
     }
