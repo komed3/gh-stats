@@ -3,13 +3,22 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>GitHub Stats Dashboard</title>
+        <title>GitHub Dashboard</title>
         <link rel="icon" href="/static/favicon.ico" sizes="96x96" type="image/x-icon" />
         <link rel="icon" href="/static/favicon.svg" sizes="any" type="image/svg+xml" />
         <link rel="stylesheet" href="/static/styles.min.css" />
     </head>
     <body>
-        <header role="banner"></header>
+        <header role="banner">
+            <img src="/static/favicon.svg" class="logo" alt="GitHub Dashboard Logo" />
+            <h1>GitHub Dashboard</h1>
+            <nav role="navigation">
+                <a href="/" class="btn current">Dashboard</a>
+                <a href="/repos" class="btn">Repositories</a>
+                <a href="/orgs" class="btn">Organizations</a>
+                <a href="/stats" class="btn">Statistics</a>
+            </nav>
+        </header>
         <main role="main"></main>
         <footer role="contentinfo">
             <p>&copy; Copyright 2025 by <a href="https://komed3.de">komed3</a>.</p>
