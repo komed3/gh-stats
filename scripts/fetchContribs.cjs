@@ -48,7 +48,7 @@ runner( async () => {
     }
 
     delete col.contributionCalendar;
-    col.total = col.commit + col.issue + col.pr + col.rewiew;
+    col.total = col.commit + col.issue + col.pr + col.review;
     col.wdPct = col.wd.map( d => Number( ( d / col.total * 100 ).toFixed( 3 ) ) );
 
     writeCSV( 'contribs.csv', days );
