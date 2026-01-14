@@ -196,7 +196,7 @@ runner( async () => {
 
     // Meta
     const powerLevel = totalStars * 10 + totalContribs * 1 + socialReach * 5;
-    const { rank: ghRank, level: ghLevel, percentile: ghPercentile } = calculateRank(
+    const { rank, level: ghLevel, percentile } = calculateRank(
         commit, pr, issue, review, totalStars, socialReach
     );
 
@@ -231,8 +231,8 @@ runner( async () => {
         activityConsistency,
 
         // Meta
-        powerLevel, ghRank, ghLevel, ghPercentile, estimatedCodingHours,
-        estimatedCodingValueUSD
+        powerLevel, ghRank: r3( rank ), ghLevel, ghPercentile: r3( percentile ),
+        estimatedCodingHours, estimatedCodingValueUSD
     } );
 
 } );
