@@ -1,5 +1,6 @@
 const calendar = ( data ) => {
     const container = el( 'div', { className: 'calendar dark' } );
+    const pane = el( 'div', { className: 'pane' } );
     const level = [ 'l0', 'l1', 'l2', 'l3', 'l4' ];
 
     const days = new Map( data.map( d => [ d.date, d ] ) );
@@ -15,7 +16,8 @@ const calendar = ( data ) => {
         t => labs.append( el( 'span', { textContent: t } ) )
     );
 
-    container.append( head, labs, grid );
+    pane.append( labs, grid );
+    container.append( head, pane );
 
     let mon = -1, wk;
     for ( let d = new Date( start ); d <= end; d.setDate( d.getDate() + 1 ) ) {
