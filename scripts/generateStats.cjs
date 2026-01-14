@@ -174,6 +174,13 @@ runner( async () => {
     const diskUsage = profile.disk_usage || 0;
     const spaceUsed = profile.plan?.space || 0;
 
+    // Health
+    const accountHealth = r3(
+        ( totalPublicRepos ? 0.2 : 0 ) + Math.min( 0.2, accountAge / 3650 ) +
+        ( ( +hasBlog + +hasLocation + +hasEmail + +( bioLength > 0 ) ) / 10 ) +
+        ( twoFactorEnabled ? 0.2 : 0 )
+    );
+
     // Social
     const numFollowers = followers.length;
     const numOrgs = orgs.length;
@@ -202,7 +209,7 @@ runner( async () => {
         // Profile stats
         totalPublicRepos, totalPrivateRepos, totalGists, totalFollowers, totalFollowing,
         accountAge, twoFactorEnabled, hasBlog, hasLocation, hasEmail, bioLength,
-        planName, diskUsage, spaceUsed,
+        planName, diskUsage, spaceUsed, accountHealth,
 
         // Social
         numFollowers, numOrgs, totalOrgFollowers, socialReach, totalStars, totalWatchers,
