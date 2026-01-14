@@ -14,6 +14,7 @@ const $ = ( sel ) => {
     const el = document.querySelector( sel );
     return {
         el,
+        doIf: ( method, ...args ) => ( el && args.length && args[ 0 ] ? $( sel )[ method ]( ...args ) : hide() ),
         text: ( val ) => ( val !== undefined ? ( el.textContent = val ) : el.textContent ),
         html: ( val ) => ( val !== undefined ? ( el.innerHTML = val ) : el.innerHTML ),
         attr: ( name, val ) => ( val !== undefined ? el.setAttribute( name, val ) : el.getAttribute( name ) ),
