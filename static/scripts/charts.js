@@ -59,6 +59,7 @@ const contribRadar = ( container, data ) => {
             plugins: { legend: false },
             scales: {
                 r: {
+                    border: { dash: [ 5, 5 ] },
                     angleLines: { lineWidth: 1, color: '#3d444d' },
                     grid: { lineWidth: 1, color: '#3d444d' },
                     ticks: { count: 6, display: false }
@@ -112,8 +113,8 @@ const distributionChart = ( container, labels, data ) => {
 
 const weekdayDistribution = ( container, data ) => {
     return distributionChart( container, [
-        'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
-    ], data );
+        'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+    ], [ data.pop(), ...data ] );
 };
 
 const hourDistribution = ( container, data ) => {
