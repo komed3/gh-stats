@@ -7,6 +7,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
         $( s + 'name' ).text( profile.name || profile.login );
         $( s + 'login' ).text( '@' + profile.login );
         $( s + 'bio' ).text( profile.bio || '' );
+        $( s + 'joined span' ).text( `Joined at ${ fDate( profile.created_at ) }` );
 
         if ( v = profile.location ) $( s + 'location span' ).text( v );
         else $( s + 'location' ).hide();
