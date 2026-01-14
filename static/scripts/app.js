@@ -51,6 +51,14 @@ const fNumber = ( val, d = 0, opt = {} ) => {
     } ).format( Number( val ) );
 };
 
+const fFullNum = ( val, d = 0, opt = {} ) => {
+    return fNumber( val, d, { notation: 'standard', ...opt } );
+};
+
+const fPct = ( val, d = 0, opt = {} ) => {
+    return fNumber( val, d, { style: 'percent', ...opt } );
+};
+
 const fDate = ( val, opt = {} ) => {
     return Intl.DateTimeFormat( 'en-US', {
         dateStyle: 'short', ...opt

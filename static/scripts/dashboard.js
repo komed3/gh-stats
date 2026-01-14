@@ -47,14 +47,19 @@ document.addEventListener( 'DOMContentLoaded', function () {
     } ).catch( console.error );
 
     loadData( 'contribs.csv' ).then( contribs => {
-        const { el } = $( '.dashboard-charts--activity .chart' );
+        const { el } = $( '.dashboard-contribs--activity .chart' );
         el.appendChild( calendar( contribs ) );
     } ).catch( console.error );
 
     loadData( 'profile.json', 'radar.json' ).then( ( [ profile, radar ] ) => {
-        $( '.dashboard-charts--info' ).html(
-            `GitHub user <b>@${profile.login}</b> made <b>${ fNumber( radar.total, 0, { notation: 'standard' } ) }</b> ` +
-            `contributions across <b>${ fNumber( radar.repo ) }</b> public repositories, among others, last year.`
+        $( '.dashboard-contribs--info' ).html(
+            `GitHub user <b>@${profile.login}</b> made <b>${ fFullNum( radar.total ) }</b> ` +
+            `contributions across <b>${ fFullNum( radar.repo ) }</b> public repositories, ` +
+            `among others, last year. <br /> Contributions break down as follows: ` +
+            `<b>${ fPct( radar.commit / radar.total ) }</b> commits, ` +
+            `<b>${ fPct( radar.issue / radar.total ) }</b> issues, ` +
+            `<b>${ fPct( radar.pr / radar.total ) }</b> pull requests, ` +
+            `<b>${ fPct( radar.review / radar.total ) }</b> code reviews.`
         );
     } ).catch( console.error );
 } );

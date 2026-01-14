@@ -89,17 +89,17 @@
     gap: 20px;
 }
 
-.dashboard-charts--divider {
+.dashboard-contribs--divider {
     background: var( --border-color );
 }
 
-.dashboard-charts--info {
+.dashboard-contribs--info {
     margin-top: 20px;
     font-size: 14px;
     font-weight: 300;
 }
 
-.dashboard-charts--info b {
+.dashboard-contribs--info b {
     font-weight: 500;
 }
 
