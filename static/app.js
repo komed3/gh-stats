@@ -34,4 +34,4 @@ const fNumber = ( val, d = 0, opt = {} ) => {
         maximumFractionDigits: d,
         ...opt
     } ).format( Number( val ) );
-}
+};

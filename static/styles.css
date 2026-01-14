@@ -49,7 +49,13 @@ html {
 body {
     line-height: 1.2;
     color: var( --text-color );
-    background: var( --bg-color );
+    background-image: linear-gradient(
+        170deg,
+        var( --box-color ),
+        var( --bg-color ) 33%
+    );
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 ul {
