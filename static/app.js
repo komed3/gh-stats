@@ -12,6 +12,7 @@ const loadData = async ( path ) => {
 
 const $ = ( sel ) => {
     const el = document.querySelector( sel );
+
     return {
         el,
         doIf: ( method, ...args ) => ( el && args.length && args[ 0 ] ? $( sel )[ method ]( ...args ) : hide() ),
@@ -20,8 +21,8 @@ const $ = ( sel ) => {
         attr: ( name, val ) => ( val !== undefined ? el.setAttribute( name, val ) : el.getAttribute( name ) ),
         src: ( val ) => ( val !== undefined ? ( el.src = val ) : el.src ),
         href: ( val ) => ( val !== undefined ? ( el.href = val ) : el.href ),
-        hide: () => ( el.style.display = 'none' ),
+        link: ( url, text ) => ( $( sel ).href( url ) && $( sel ).text( text ?? url.replace( /^https?:\/\//, '' ) ) ),
         show: () => ( el.style.display = '' ),
-        link: ( url, text ) => ( $.href( url ).text( text ?? url.replace( /^https?:\/\//, '' ) ) )
+        hide: () => ( el.style.display = 'none' )
     };
 };
