@@ -46,8 +46,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
     } ).catch( console.error );
 
     loadData( 'contribs.csv' ).then( contribs => {
-        const { el } = $( '.dashboard-contribs--calendar .chart' );
-        el.appendChild( calendar( contribs ) );
+        $( '.dashboard-contribs--calendar .chart' ).el.appendChild( calendar( contribs ) );
     } ).catch( console.error );
 
     loadData( 'profile.json', 'radar.json' ).then( ( [ profile, radar ] ) => {
@@ -62,5 +61,10 @@ document.addEventListener( 'DOMContentLoaded', function () {
             `<b>${ fPct( radar.pr / radar.total ) }</b> pull requests, ` +
             `<b>${ fPct( radar.review / radar.total ) }</b> code reviews.`
         );
+    } ).catch( console.error );
+
+    loadData( 'activity.json' ).then( ( { weekdaysPct, periodsPct } ) => {
+        weekdayDistribution( $( '.dashboard-activity--weekday .chart' ).el, weekdaysPct );
+        periodDistribution( $( '.dashboard-activity--period .chart' ).el, periodsPct );
     } ).catch( console.error );
 } );

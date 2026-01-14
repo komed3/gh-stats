@@ -50,8 +50,6 @@ const contribRadar = ( container, data ) => {
                 backgroundColor: '#39d35333',
                 pointBackgroundColor: '#010409',
                 pointBorderColor: '#39d353',
-                pointHoverBackgroundColor: '#010409',
-                pointHoverBorderColor: '#39d353',
                 tension: 0.1
             } ]
         },
@@ -67,4 +65,65 @@ const contribRadar = ( container, data ) => {
             }
         }
     } );
+};
+
+const distributionChart = ( container, labels, data ) => {
+    return chart( container, {
+        type: 'line',
+        data: {
+            labels,
+            datasets: [ {
+                data,
+                borderWidth: 2,
+                borderColor: '#39d353',
+                backgroundColor: '#39d35333',
+                pointRadius: 6,
+                pointBackgroundColor: '#010409',
+                pointBorderColor: '#39d353',
+                tension: 0.1
+            } ]
+        },
+        options: {
+            events: [],
+            plugins: { legend: false },
+            scales: {
+                x: {
+                    offset: true,
+                    ticks: {
+                        autoSkip: true,
+                        maxRotation: 0,
+                        minRotation: 0
+                    }
+                },
+                y: {
+                    grid: { lineWidth: 1, color: '#3d444d', drawTicks: false },
+                    border: { dash: [ 5, 5 ] },
+                    ticks: {
+                        maxTicksLimit: 3,
+                        callback: v => fPct( v / 100 ),
+                        color: '#9198a1'
+                    }
+                }
+            }
+        }
+    } );
+};
+
+const weekdayDistribution = ( container, data ) => {
+    return distributionChart( container, [
+        'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
+    ], data );
+};
+
+const hourDistribution = ( container, data ) => {
+    return distributionChart( container, [
+        '12am', '1am', '2am', '3am', '4am', '5am', '6am', '7am', '8am', '9am', '10am', '11am',
+        '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', '9pm', '10pm', '11pm'
+    ], data );
+};
+
+const periodDistribution = ( container, data ) => {
+    return distributionChart( container, [
+        'Morning', 'Daytime', 'Evening', 'Night'
+    ], Object.values( data ) );
 };
