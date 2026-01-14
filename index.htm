@@ -6,7 +6,11 @@
         <title>GitHub Dashboard</title>
         <link rel="icon" href="/static/favicon.ico" sizes="96x96" type="image/x-icon" />
         <link rel="icon" href="/static/favicon.svg" sizes="any" type="image/svg+xml" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
         <link rel="stylesheet" href="/static/styles.min.css" />
+        <link rel="stylesheet" href="/static/dashboard.min.css" />
+        <script src="/static/app.min.js" defer></script>
+        <script src="/static/dashboard.min.js" defer></script>
     </head>
     <body>
         <header role="banner">
@@ -22,8 +26,33 @@
         <main role="main">
             <div class="dashboard">
                 <div class="box dashboard-profile">
-                    //
+                    <img src="" class="dashboard-profile--avatar" alt="GitHub Profile Avatar" />
+                    <div class="dashboard-profile--info">
+                        <h2 class="dashboard-profile--name"></h2>
+                        <h3 class="dashboard-profile--login"></h3>
+                        <p class="dashboard-profile--bio"></p>
+                        <ul class="dashboard-profile--details">
+                            <li class="dashboard-profile--location">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                <span></span>
+                            </li>
+                            <li class="dashboard-profile--blog">
+                                <i class="fa fa-link" aria-hidden="true"></i>
+                                <a href=""></a>
+                            </li>
+                            <li class="dashboard-profile--email">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                <a href=""></a>
+                            </li>
+                            <li class="dashboard-profile--twitter">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                                <a href=""></a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+                <div class="dashboard-aside"></div>
+                <div class="dashboard-main"></div>
             </div>
         </main>
         <footer role="contentinfo">
