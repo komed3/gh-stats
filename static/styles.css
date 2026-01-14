@@ -21,6 +21,12 @@
     --accent-color: #4493f8;
     --hover-color: #2a7aef;
     --border-radius: 6px;
+
+    --l0: #161b22;
+    --l1: #0e4429;
+    --l2: #006d32;
+    --l3: #26a641;
+    --l4: #39d353;
 }
 
 *, *::before, *::after {
