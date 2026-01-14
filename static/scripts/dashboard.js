@@ -30,9 +30,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
         $( s + 'reach b' ).text( fNumber( stats.socialReach ) );
         $( s + 'repos b' ).text( fNumber( stats.totalPublicRepos ) );
         $( s + 'stars b' ).text( fNumber( stats.totalStars ) );
-        $( s + 'value b' ).text( fNumber( stats.estimatedCodingValueUSD, 0, {
-            style: 'currency', currency: 'USD', currencyDisplay: 'symbol'
-        } ) );
+        $( s + 'hours b' ).text( fNumber( stats.estimatedCodingHours, 1 ) );
     } ).catch( console.error );
 
     loadData( 'follower.json' ).then( follower => {
