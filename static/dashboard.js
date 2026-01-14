@@ -47,4 +47,9 @@ document.addEventListener( 'DOMContentLoaded', function () {
             container.append( el );
         }
     } ).catch( console.error );
+
+    loadData( 'contribs.csv' ).then( data => {
+        const { el } = $( '.dashboard-charts--activity .chart' );
+        el.appendChild( calendar( data ) );
+    } ).catch( console.error );
 } );

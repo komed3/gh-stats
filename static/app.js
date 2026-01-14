@@ -4,10 +4,19 @@ const loadData = async ( path ) => {
     if ( ! dataCache.has( path ) ) {
         const res = await fetch( `/data/${path}` );
         if ( ! res.ok ) throw new Error( `Failed to load from path: ${path}` );
-        dataCache.set( path, await res.json() );
+
+        dataCache.set( path, path.endsWith( '.csv' )
+            ? parseCSV( await res.text() )
+            : await res.json()
+        );
     }
 
     return dataCache.get( path );
+};
+
+const parseCSV = ( raw ) => {
+    const [ header, ...rows ] = raw.trim().split( '\n' ).map( r => r.split( ',' ) );
+    return rows.map( r => Object.fromEntries( header.map( ( h, i ) => [ h, r[ i ] ] ) ) );
 };
 
 const $ = ( sel ) => {
