@@ -84,6 +84,7 @@ a:hover {
 }
 
 a.btn, a.btn:link, a.btn:visited {
+    display: inline-block;
     padding: 12px 16px;
     font-size: 14px;
     font-weight: 600;
