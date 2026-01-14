@@ -10,7 +10,6 @@ runner( async () => {
     const profile = await readJSON( 'profile.json' );
     const repos = await readJSON( 'repos.json' ) || [];
     const languages = await readJSON( 'languages.json' ) || {};
-    const contribs = await readCSV( 'contribs.csv' );
     const activity = await readJSON( 'activity.json' );
     const followers = await readJSON( 'follower.json' ) || [];
     const orgs = await readJSON( 'orgs.json' ) || [];
