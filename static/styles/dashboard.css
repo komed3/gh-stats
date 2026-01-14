@@ -103,6 +103,20 @@
     font-weight: 500;
 }
 
+.dashboard-contribs--radar {
+    align-self: center;
+}
+
+.dashboard-activity {
+    display: grid;
+    grid-template-columns: 7fr 1px 4fr;
+    gap: 20px;
+}
+
+.dashboard-activity--divider {
+    background: var( --border-color );
+}
+
 .dashboard-followers--grid {
     display: grid;
     grid-template-columns: repeat( 3, 1fr );

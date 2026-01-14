@@ -46,7 +46,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
     } ).catch( console.error );
 
     loadData( 'contribs.csv' ).then( contribs => {
-        const { el } = $( '.dashboard-contribs--activity .chart' );
+        const { el } = $( '.dashboard-contribs--calendar .chart' );
         el.appendChild( calendar( contribs ) );
     } ).catch( console.error );
 
