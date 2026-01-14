@@ -52,6 +52,8 @@ document.addEventListener( 'DOMContentLoaded', function () {
     } ).catch( console.error );
 
     loadData( 'profile.json', 'radar.json' ).then( ( [ profile, radar ] ) => {
+        contribRadar( $( '.dashboard-contribs--radar .chart' ).el, radar );
+
         $( '.dashboard-contribs--info' ).html(
             `GitHub user <b>@${profile.login}</b> made <b>${ fFullNum( radar.total ) }</b> ` +
             `contributions across <b>${ fFullNum( radar.repo ) }</b> public repositories, ` +

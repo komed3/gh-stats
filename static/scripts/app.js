@@ -24,19 +24,19 @@ const parseCSV = ( raw ) => {
 };
 
 const $ = ( sel ) => {
-    const el = document.querySelector( sel );
+    const $$ = document.querySelector( sel );
 
     return {
-        el,
-        doIf: ( method, ...args ) => ( el && args.length && args[ 0 ] ? $( sel )[ method ]( ...args ) : hide() ),
-        text: ( val ) => ( val !== undefined ? ( el.textContent = val ) : el.textContent ),
-        html: ( val ) => ( val !== undefined ? ( el.innerHTML = val ) : el.innerHTML ),
-        attr: ( name, val ) => ( val !== undefined ? el.setAttribute( name, val ) : el.getAttribute( name ) ),
-        src: ( val ) => ( val !== undefined ? ( el.src = val ) : el.src ),
-        href: ( val ) => ( val !== undefined ? ( el.href = val ) : el.href ),
+        el: $$,
+        doIf: ( method, ...args ) => ( $$ && args.length && args[ 0 ] ? $( sel )[ method ]( ...args ) : hide() ),
+        text: ( val ) => ( val !== undefined ? ( $$.textContent = val ) : $$.textContent ),
+        html: ( val ) => ( val !== undefined ? ( $$.innerHTML = val ) : $$.innerHTML ),
+        attr: ( name, val ) => ( val !== undefined ? $$.setAttribute( name, val ) : $$.getAttribute( name ) ),
+        src: ( val ) => ( val !== undefined ? ( $$.src = val ) : $$.src ),
+        href: ( val ) => ( val !== undefined ? ( $$.href = val ) : $$.href ),
         link: ( url, text ) => ( $( sel ).href( url ) && $( sel ).text( text ?? url.replace( /^https?:\/\//, '' ) ) ),
-        show: () => ( el.style.display = '' ),
-        hide: () => ( el.style.display = 'none' )
+        show: () => ( $$.style.display = '' ),
+        hide: () => ( $$.style.display = 'none' )
     };
 };
 
