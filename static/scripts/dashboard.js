@@ -31,6 +31,13 @@ document.addEventListener( 'DOMContentLoaded', function () {
         $( s + 'repos b' ).text( fNumber( stats.totalPublicRepos ) );
         $( s + 'stars b' ).text( fNumber( stats.totalStars ) );
         $( s + 'hours b' ).text( fNumber( stats.estimatedCodingHours, 1 ) );
+
+        $( '.dashboard-skills--list' ).el.append( ...Object.entries( stats.languageSkills ).map(
+            ( [ lang, { level, weight } ] ) => el( 'li', {
+                className: `item ${ lang.toLowerCase() } ${ level.toLowerCase() }`,
+                innerHTML: `<b>${lang}</b><span>${level}</span><div class="weight" style="--p:${weight}%">`
+            } )
+        ) );
     } ).catch( console.error );
 
     loadData( 'follower.json' ).then( follower => {
