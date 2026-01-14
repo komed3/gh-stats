@@ -103,48 +103,6 @@
     font-weight: 500;
 }
 
-.dashboard-skills--grid {
-    display: grid;
-    grid-template-columns: repeat( 6, 1fr );
-    gap: 20px;
-}
-
-.dashboard-skills--grid .item {
-    position: relative;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    gap: 4px;
-    padding: 18px 10px;
-    background: var( --hover-accent );
-    border-radius: var( --border-radius );
-    z-index: 1;
-    overflow: hidden;
-}
-
-.dashboard-skills--grid .item::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: var( --p, 0% );
-    background: var( --l4 );
-    opacity: 0.25;
-    z-index: -1;
-}
-
-.dashboard-skills--grid .item b {
-    font-size: 20px;
-    font-weight: 600;
-}
-
-.dashboard-skills--grid .item span {
-    font-size: 15px;
-    font-weight: 300;
-    color: var( --muted-color );
-}
-
 .dashboard-followers--grid {
     display: grid;
     grid-template-columns: repeat( 3, 1fr );
