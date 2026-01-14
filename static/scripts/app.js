@@ -1,18 +1,22 @@
 const dataCache = new Map();
 
-const loadData = async ( path ) => {
-    if ( ! dataCache.has( path ) ) {
-        const res = await fetch( `/data/${path}` );
-        if ( ! res.ok ) throw new Error( `Failed to load from path: ${path}` );
+const loadData = async ( ...path ) => {
+    const res = await Promise.all( path.map( async p => {
+        if ( ! dataCache.has( p ) ) {
+            const response = await fetch( `/data/${p}` );
+            if ( ! response.ok ) throw new Error( `Failed to load from path: ${p}` );
+            dataCache.set( p, p.endsWith( '.csv' )
+                ? parseCSV( await response.text() )
+                : await response.json()
+            );
+        }
 
-        dataCache.set( path, path.endsWith( '.csv' )
-            ? parseCSV( await res.text() )
-            : await res.json()
-        );
-    }
+        return dataCache.get( p );
+    } ) );
 
-    return dataCache.get( path );
+    return path.length === 1 ? res[ 0 ] : res;
 };
+
 
 const parseCSV = ( raw ) => {
     const [ header, ...rows ] = raw.trim().split( '\n' ).map( r => r.split( ',' ) );
