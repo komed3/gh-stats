@@ -36,6 +36,8 @@ const $ = ( sel ) => {
     };
 };
 
+const el = ( t, c ) => Object.assign( document.createElement( t ), c || {} );
+
 const fNumber = ( val, d = 0, opt = {} ) => {
     return Intl.NumberFormat( 'en-US', {
         notation: 'compact',
@@ -43,4 +45,10 @@ const fNumber = ( val, d = 0, opt = {} ) => {
         maximumFractionDigits: d,
         ...opt
     } ).format( Number( val ) );
+};
+
+const fDate = ( val, opt = {} ) => {
+    return Intl.DateTimeFormat( 'en-US', {
+        dateStyle: 'short', ...opt
+    } ).format( new Date( val ) );
 };
