@@ -45,7 +45,7 @@
     border-radius: 2px;
 }
 
-.calendar .day:hover {
+.calendar .grid .day:hover {
     filter: brightness( 1.6 );
     cursor: help;
 }
