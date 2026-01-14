@@ -1,12 +1,12 @@
 @font-face {
     font-family: 'Noto Sans';
-    src: url( ./NotoSans.woff2 ) format( 'woff2' );
+    src: url( ./../NotoSans.woff2 ) format( 'woff2' );
 }
 
 @font-face {
     font-family: 'Noto Sans';
     font-style: italic;
-    src: url( ./NotoSans-Italic.woff2 ) format( 'woff2' );
+    src: url( ./../NotoSans-Italic.woff2 ) format( 'woff2' );
 }
 
 :root {
