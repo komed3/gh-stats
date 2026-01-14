@@ -115,8 +115,8 @@ runner( async () => {
     const skillLevel = ( size ) => size > 1e6 ? 'Expert' : size > 25e4 ? 'Advanced' :
         size > 5e4 ? 'Intermediate' : 'Beginner';
 
-    const skills = ( data, max ) => Object.fromEntries( data.map( ( [ lang, size ] ) => [
-        lang, { level: skillLevel( size ), weight: r3( ( size / max ) * 100 ) }
+    const skills = ( data, total, max ) => Object.fromEntries( data.map( ( [ lang, size ] ) => [
+        lang, { level: skillLevel( size ), pct: r3( size / total ), weight: r3( size / max ) }
     ] ) );
 
     const diversity = ( data, total ) => r3( -data.reduce( ( s, [ , size ] ) => {
@@ -128,7 +128,7 @@ runner( async () => {
     const totalCodeSize = langEntries.reduce( ( s, [, size ] ) => s + size, 0 );
     const { max: mostUsedLang, min: leastUsedLang } = codeExtrema( langEntries );
     const maxLangSize = mostUsedLang.size;
-    const languageSkills = skills( langEntries, maxLangSize );
+    const languageSkills = skills( langEntries, totalCodeSize, maxLangSize );
     const languageDiversity = diversity( langEntries, totalCodeSize );
 
     // Activity
