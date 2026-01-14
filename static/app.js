@@ -26,3 +26,12 @@ const $ = ( sel ) => {
         hide: () => ( el.style.display = 'none' )
     };
 };
+
+const fNumber = ( val, d = 0, opt = {} ) => {
+    return Intl.NumberFormat( 'en-US', {
+        notation: 'compact',
+        minimumFractionDigits: d,
+        maximumFractionDigits: d,
+        ...opt
+    } ).format( Number( val ) );
+}
