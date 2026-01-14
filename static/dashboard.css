@@ -37,3 +37,20 @@
     font-size: 16px;
     font-weight: 300;
 }
+
+.dashboard-profile--details {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    gap: 20px;
+}
+
+.dashboard-profile--details i {
+    font-weight: 300;
+}
+
+.dashboard-profile--details span,
+.dashboard-profile--details a {
+    margin-left: 6px;
+    font-weight: 500;
+}
