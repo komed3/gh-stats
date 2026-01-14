@@ -1,11 +1,4 @@
-.dashboard {
-    display: grid;
-    grid-template-columns: 2fr 3fr;
-    gap: 20px;
-}
-
 .dashboard-profile {
-    grid-column: 1 / span 2;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;

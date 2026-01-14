@@ -118,6 +118,7 @@ main {
 }
 
 main .box {
+    margin-bottom: 20px;
     padding: 20px;
     background: var( --box-color );
     border: 1px solid var( --border-color );
