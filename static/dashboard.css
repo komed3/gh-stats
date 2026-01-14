@@ -84,6 +84,16 @@
     color: var( --muted-color );
 }
 
+.dashboard-charts {
+    display: grid;
+    grid-template-columns: 7fr 1px 3fr;
+    gap: 20px;
+}
+
+.dashboard-charts--divider {
+    background: var( --border-color );
+}
+
 .dashboard-followers--grid {
     display: grid;
     grid-template-columns: repeat( 3, 1fr );
