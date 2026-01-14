@@ -195,7 +195,7 @@ runner( async () => {
     const activityConsistency = r3( contribsStdDev / avgContribsPerDay );
 
     // Meta
-    const powerLevel = totalStars * 10 + totalContribs * 1 + socialReach * 5;
+    const powerLevel = totalStars * 10 + totalContribs + socialReach * 5;
     const { rank, level: ghLevel, percentile } = calculateRank(
         commit, pr, issue, review, totalStars, socialReach
     );
