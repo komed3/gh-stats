@@ -64,6 +64,10 @@ body {
     background-attachment: fixed;
 }
 
+p {
+    line-height: 1.6;
+}
+
 ul {
     list-style: none;
     padding: 0;

@@ -26,7 +26,6 @@
 
 .dashboard-profile--bio {
     margin: 12px 20% 20px 0;
-    line-height: 1.6;
     font-size: 16px;
     font-weight: 300;
 }
@@ -92,6 +91,16 @@
 
 .dashboard-charts--divider {
     background: var( --border-color );
+}
+
+.dashboard-charts--info {
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.dashboard-charts--info b {
+    font-weight: 500;
 }
 
 .dashboard-followers--grid {
