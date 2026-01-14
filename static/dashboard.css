@@ -74,7 +74,7 @@
 
 .dashboard-stats .item b {
     margin: 8px 0 2px;
-    font-size: 24px;
+    font-size: 25px;
     font-weight: 600;
 }
 
@@ -82,4 +82,25 @@
     font-size: 13px;
     font-weight: 300;
     color: var( --muted-color );
+}
+
+.dashboard-followers--grid {
+    display: grid;
+    grid-template-columns: repeat( 3, 1fr );
+    gap: 20px;
+}
+
+.dashboard-followers--grid .item {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 12px;
+}
+
+.dashboard-followers--grid .item img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
 }

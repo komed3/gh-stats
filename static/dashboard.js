@@ -34,4 +34,17 @@ document.addEventListener( 'DOMContentLoaded', function () {
             style: 'currency', currency: 'USD', currencyDisplay: 'symbol'
         } ) );
     } ).catch( console.error );
+
+    loadData( 'follower.json' ).then( data => {
+        const { el: container } = $( '.dashboard-followers--grid' );
+        for ( const { login, html_url, avatar_url } of data.slice( 0, 36 ) ) {
+            const el = document.createElement( 'a' );
+            el.href = html_url;
+            el.setAttribute( 'target', '_blank' );
+            el.classList.add( 'item' );
+            el.innerHTML += `<img src="${avatar_url}" alt="GitHub Profile Avatar" />`;
+            el.innerHTML += `<span>${login}</span>`;
+            container.append( el );
+        }
+    } ).catch( console.error );
 } );

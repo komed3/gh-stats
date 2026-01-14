@@ -125,6 +125,12 @@ main .box {
     border-radius: var( --border-radius );
 }
 
+main .box-hl {
+    margin-bottom: 16px;
+    font-size: 17px;
+    font-weight: 500;
+}
+
 footer {
     display: flex;
     flex-flow: row wrap;
