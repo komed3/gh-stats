@@ -10,10 +10,13 @@
 }
 
 :root {
+    --content-width: 1260px;
     --font-sans: 'Noto Sans', sans-serif;
     --bg-color: #0d1117;
     --text-color: #ffffff;
     --box-color: #010409;
+    --accent-color: #4493f8;
+    --hover-color: #2a7aef;
 }
 
 *, *::before, *::after {
@@ -21,6 +24,7 @@
     margin: 0;
     padding: 0;
     text-rendering: optimizeLegibility;
+    text-underline-offset: 12%;
     font-feature-settings: 'kern';
     font-variant-ligatures: common-ligatures;
     font-kerning: normal;
@@ -34,7 +38,7 @@
 
 html {
     font-family: var( --font-sans );
-    font-size: 16px;
+    font-size: 15px;
     scroll-behavior: smooth;
 }
 
@@ -42,4 +46,26 @@ body {
     line-height: 1.2;
     color: var( --text-color );
     background: var( --bg-color );
+}
+
+a, a:link, a:visited {
+    text-decoration: none;
+    color: var( --accent-color );
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var( --hover-color );
+}
+
+footer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 60px auto;
+    max-width: var( --content-width );
+    padding: 0 20px;
+    font-size: 13px;
+    font-weight: 500;
 }
