@@ -48,6 +48,7 @@ const contribRadar = ( container, data ) => {
                 borderWidth: 2,
                 borderColor: '#39d353',
                 backgroundColor: '#39d35333',
+                pointRadius: 4,
                 pointBackgroundColor: '#010409',
                 pointBorderColor: '#39d353',
                 tension: 0.1
