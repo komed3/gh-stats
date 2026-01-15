@@ -11,7 +11,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
         contribCharts( $( '.contribs-info--years .chart' ).el, stats.yearlyTotals );
 
         const container = $( '.contribs-years' ).el;
-        for ( const year of Object.keys( stats.yearlyTotals ).sort().reverse() ) {
+        for ( const year of Object.keys( stats.yearlyTotals ).sort().reverse().slice( 0, 10 ) ) {
             loadData( `year/${year}.csv` ).then( data => {
                 const y = el( 'div', { className: 'box contribs-years--year' } );
                 y.innerHTML = `<h3 class="box-hl">Contributions ${year}</h3>`;
