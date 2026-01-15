@@ -36,3 +36,21 @@
     margin: 12px 20% 20px 0;
     color: var( --muted-color );
 }
+
+.repo-topics {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 20px 0;
+}
+
+.repo-topics li {
+    padding: 0 8px;
+    line-height: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var( --accent-color );
+    background: var( --hover-accent );
+    border-radius: 10px;
+}

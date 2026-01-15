@@ -17,7 +17,9 @@ document.addEventListener( 'DOMContentLoaded', function () {
                 `<h3 class="repo-name"><span>${owner}</span>/<a href="${repo.html_url}" target="_blank">${name}</a></h3>` +
                 ( status ? `<span class="repo-status">${status}</span>` : '' ) +
             `</div>` +
-            `<p class="repo-desc">${repo.description}</p>`;
+            `<p class="repo-desc">${repo.description}</p>` +
+            `<ul class="repo-topics">${ ( repo.topics ?? [] ).slice( 0, 7 ).map( t => `<li>${t}</li>` ).join( '' ) }</ul>` +
+            `<div class="repo-meta"></div>`;
 
             container.appendChild( r );
         } );
