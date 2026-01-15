@@ -1,0 +1,9 @@
+.contribs-info {
+    display: grid;
+    grid-template-columns: 7fr 1px 4fr;
+    gap: 20px;
+}
+
+.contribs-info--divider {
+    background: var( --border-color );
+}
