@@ -18,7 +18,10 @@ const languages = ( container, languageSkills ) => {
             `<b>${ fPct( pct ) }</b></li>`;
     } );
 
-    if ( items.sum < 1 ) bar.innerHTML += `<div style="--p:${ ( 1 - items.sum ) }"></div>`;
+    if ( items.sum < 1 ) {
+        bar.innerHTML += `<div style="--p:${ ( 1 - items.sum ) }"></div>`;
+        legend.innerHTML += `<li><span>Others</span><b>${ fPct( 1 - items.sum ) }</b></li>`;
+    }
 
     widget.append( bar, legend );
     container.appendChild( widget );
