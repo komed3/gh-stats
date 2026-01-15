@@ -2,6 +2,7 @@ const languages = ( container, languageSkills ) => {
     const items = Object.entries( languageSkills )
         .filter( ( [ , { pct } ] ) => pct >= 0.025 )
         .map( ( [ lang, { pct } ] ) => ( { lang, pct } ) )
+        .sort( ( a, b ) => b.pct - a.pct )
         .reduce( ( acc, { lang, pct } ) => (
             acc.sum += pct, acc.items.push( { lang, pct } ), acc
         ), { items: [], sum: 0 } );
