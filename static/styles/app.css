@@ -162,3 +162,9 @@ footer {
     font-size: 13px;
     font-weight: 500;
 }
+
+.scroll-top {
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+}
