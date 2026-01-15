@@ -18,6 +18,8 @@
 }
 
 .repos-filter select {
+    font-size: 14px;
+    font-weight: 600;
     background: var( --hover-accent );
     border: 0;
     cursor: pointer;
