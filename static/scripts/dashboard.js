@@ -1,6 +1,6 @@
 document.addEventListener( 'DOMContentLoaded', function () {
     loadData( 'profile.json' ).then( profile => {
-        let s = '.dashboard-profile--', v;
+        let s = '.profile-', v;
 
         $( s + 'link' ).href( profile.html_url );
         $( s + 'avatar' ).src( profile.avatar_url );
