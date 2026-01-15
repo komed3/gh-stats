@@ -16,7 +16,8 @@ document.addEventListener( 'DOMContentLoaded', function () {
                 `<i class="fa fa-${badge} repo-badge" aria-hidden="true"></i>` +
                 `<h3 class="repo-name"><span>${owner}</span>/<a href="${repo.html_url}" target="_blank">${name}</a></h3>` +
                 ( status ? `<span class="repo-status">${status}</span>` : '' ) +
-            `</div>`;
+            `</div>` +
+            `<p class="repo-desc">${repo.description}</p>`;
 
             container.appendChild( r );
         } );

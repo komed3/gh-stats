@@ -31,3 +31,8 @@
     border: 1px solid var( --muted-color );
     border-radius: 10px;
 }
+
+.repo-desc {
+    margin: 12px 20% 20px 0;
+    color: var( --muted-color );
+}
