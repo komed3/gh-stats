@@ -1,3 +1,36 @@
+.repos-filter {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+
+.repos-filter input, .repos-filter select {
+    height: 40px;
+    padding: 0 12px;
+    font-family: var( --font-sans );
+    font-size: 15px;
+    color: var( --text-color );
+    background: var( --box-color );
+    border: 1px solid var( --border-color );
+    border-radius: var( --border-radius );
+}
+
+.repos-filter select {
+    background: var( --hover-accent );
+    border: 0;
+    cursor: pointer;
+}
+
+.repos-filter input:focus, .repos-filter select:focus {
+    outline: 1px solid var( --accent-color );
+}
+
+.repos-filter--search {
+    flex: 1;
+}
+
 .repo {
     display: grid;
     grid-template-columns: 5fr 2fr;
