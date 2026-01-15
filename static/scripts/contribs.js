@@ -10,9 +10,13 @@ document.addEventListener( 'DOMContentLoaded', function () {
 
         contribCharts( $( '.contribs-info--years .chart' ).el, stats.yearlyTotals );
 
-        for ( const year of Object.keys( stats.yearlyTotals ) ) {
+        const container = $( '.contribs-years' ).el;
+        for ( const year of Object.keys( stats.yearlyTotals ).sort().reverse() ) {
             loadData( `year/${year}.csv` ).then( data => {
-                //
+                const y = el( 'div', { className: 'box contribs-years--year' } );
+                y.innerHTML = `<h3 class="box-hl">Contributions ${year}</h3>`;
+                y.appendChild( calendar( data ) );
+                container.appendChild( y );
             } ).catch( console.error );
         }
     } ).catch( console.error );
