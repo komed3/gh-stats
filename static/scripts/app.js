@@ -52,7 +52,7 @@ const fNumber = ( val, d = 0, opt = {} ) => Intl.NumberFormat( 'en-US', {
 
 const fFullNum = ( val, d = 0, opt = {} ) => fNumber( val, d, { notation: 'standard', ...opt } );
 
-const fPct = ( val, d = 0, opt = {} ) => fNumber( val, d, { style: 'percent', ...opt } );
+const fPct = ( val, d = 0, opt = {} ) => fNumber( val > 1 ? val / 100 : val, d, { style: 'percent', ...opt } );
 
 const fSize = ( val, d = 0 ) => {
     const i = Math.floor( Math.log10( val * 1024 ) / 3 );
