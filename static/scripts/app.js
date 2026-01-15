@@ -44,25 +44,14 @@ const el = ( t, c ) => Object.assign( document.createElement( t ), c || {} );
 
 const langKey = ( lang ) => String( lang ?? '' ).toLowerCase().replace( /[^a-z0-9]/g, '-' );
 
-const fNumber = ( val, d = 0, opt = {} ) => {
-    return Intl.NumberFormat( 'en-US', {
-        notation: 'compact',
-        minimumFractionDigits: d,
-        maximumFractionDigits: d,
-        ...opt
-    } ).format( Number( val ) );
-};
+const fDate = ( val, opt = {} ) => Intl.DateTimeFormat( 'en-US', { dateStyle: 'short', ...opt } ).format( new Date( val ) );
 
-const fFullNum = ( val, d = 0, opt = {} ) => {
-    return fNumber( val, d, { notation: 'standard', ...opt } );
-};
+const fNumber = ( val, d = 0, opt = {} ) => Intl.NumberFormat( 'en-US', {
+    notation: 'compact', minimumFractionDigits: d, maximumFractionDigits: d, ...opt
+} ).format( Number( val ) );
 
-const fPct = ( val, d = 0, opt = {} ) => {
-    return fNumber( val, d, { style: 'percent', ...opt } );
-};
+const fFullNum = ( val, d = 0, opt = {} ) => fNumber( val, d, { notation: 'standard', ...opt } );
 
-const fDate = ( val, opt = {} ) => {
-    return Intl.DateTimeFormat( 'en-US', {
-        dateStyle: 'short', ...opt
-    } ).format( new Date( val ) );
-};
+const fPct = ( val, d = 0, opt = {} ) => fNumber( val, d, { style: 'percent', ...opt } );
+
+const fSize = ( val ) => { return val; };
