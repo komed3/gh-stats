@@ -42,7 +42,7 @@ const $ = ( sel ) => {
 
 const el = ( t, c ) => Object.assign( document.createElement( t ), c || {} );
 
-const langKey = ( lang ) => String( lang ?? '' ).toLowerCase().replace( /[^a-z0-9]/g, '-' );
+const langKey = ( lang, d = '-' ) => String( lang ?? '' ).toLowerCase().replace( /[^a-z0-9]/g, d );
 
 const fDate = ( val, opt = {} ) => Intl.DateTimeFormat( 'en-US', { dateStyle: 'short', ...opt } ).format( new Date( val ) );
 
