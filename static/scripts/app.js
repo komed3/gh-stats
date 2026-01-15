@@ -42,6 +42,8 @@ const $ = ( sel ) => {
 
 const el = ( t, c ) => Object.assign( document.createElement( t ), c || {} );
 
+const langKey = ( lang ) => String( lang ?? '' ).toLowerCase().replace( /[^a-z0-9]/g, '-' );
+
 const fNumber = ( val, d = 0, opt = {} ) => {
     return Intl.NumberFormat( 'en-US', {
         notation: 'compact',

@@ -12,9 +12,9 @@ const languages = ( container, languageSkills ) => {
     const legend = el( 'ul', { className: 'widget-languages--legend' } );
 
     items.items.forEach( ( { lang, pct } ) => {
-        const langKey = lang.toLowerCase().replace( /[^a-z0-9]/g, '-' );
-        bar.innerHTML += `<div style="--p:${pct};--c:var(--lang-${langKey})"></div>`;
-        legend.innerHTML += `<li style="--c:var(--lang-${langKey})"><span>${lang}</span>` +
+        const key = langKey( lang );
+        bar.innerHTML += `<div style="--p:${pct};--c:var(--lang-${key})"></div>`;
+        legend.innerHTML += `<li style="--c:var(--lang-${key})"><span>${lang}</span>` +
             `<b>${ fPct( pct ) }</b></li>`;
     } );
 
