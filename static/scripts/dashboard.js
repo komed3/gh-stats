@@ -32,6 +32,8 @@ document.addEventListener( 'DOMContentLoaded', function () {
         $( s + 'repos b' ).text( fNumber( stats.totalPublicRepos ) );
         $( s + 'stars b' ).text( fNumber( stats.totalStars ) );
         $( s + 'hours b' ).text( fNumber( stats.estimatedCodingHours, 1 ) );
+
+        languages( $( '.dashboard-languages' ).el, stats.languageSkills );
     } ).catch( console.error );
 
     loadData( 'follower.json' ).then( follower => {
