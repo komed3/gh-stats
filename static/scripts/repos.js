@@ -35,22 +35,10 @@ document.addEventListener( 'DOMContentLoaded', function () {
                 `</ul>` +
             `</div>` +
             `<div class="repo-stats">` +
-                `<div class="item">` +
-                    `<i class="fa fa-star-o" aria-hidden="true"></i>` +
-                    `<b>${ fNumber( repo.stargazers_count ) }</b><span>Stargazers</span>` +
-                `</div>` +
-                `<div class="item">` +
-                    `<i class="fa fa-heart-o" aria-hidden="true"></i>` +
-                    `<b>${ fNumber( repo.subscribers_count ) }</b><span>Subscribers</span>` +
-                `</div>` +
-                `<div class="item">` +
-                    `<i class="fa fa-code-fork" aria-hidden="true"></i>` +
-                    `<b>${ fNumber( repo.forks_count ) }</b><span>Forks</span>` +
-                `</div>` +
-                `<div class="item">` +
-                    `<i class="fa fa-bug" aria-hidden="true"></i>` +
-                    `<b>${ fNumber( repo.open_issues_count ) }</b><span>Issues</span>` +
-                `</div>` +
+                `<div><b>${ fNumber( repo.stargazers_count ) }</b><span>Stargazers</span></div>` +
+                `<div><b>${ fNumber( repo.subscribers_count ) }</b><span>Subscribers</span></div>` +
+                `<div><b>${ fNumber( repo.forks_count ) }</b><span>Forks</span></div>` +
+                `<div><b>${ fNumber( repo.open_issues_count ) }</b><span>Issues</span></div>` +
             `</div>`;
 
             container.appendChild( r );
