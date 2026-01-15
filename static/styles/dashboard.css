@@ -113,6 +113,11 @@
     gap: 20px;
 }
 
+.dashboard-activity .chart {
+    width: 100%;
+    height: 200px;
+}
+
 .dashboard-activity--divider {
     background: var( --border-color );
 }
