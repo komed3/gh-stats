@@ -12,26 +12,46 @@ document.addEventListener( 'DOMContentLoaded', function () {
             else if ( repo.is_template ) r.classList.add( 'template' ), badge = 'clone', status = 'Template';
             else if ( repo.private ) r.classList.add( 'private' ), badge = 'lock', status = 'Private';
 
-            r.innerHTML = `<div class="repo-header">` +
-                `<i class="fa fa-${badge} repo-badge" aria-hidden="true"></i>` +
-                `<h3 class="repo-name"><span>${owner}</span>/<a href="${repo.html_url}" target="_blank">${name}</a></h3>` +
-                ( status ? `<span class="repo-status">${status}</span>` : '' ) +
+            r.innerHTML = `<div class="repo-info">` +
+                `<div class="repo-header">` +
+                    `<i class="fa fa-${badge} repo-badge" aria-hidden="true"></i>` +
+                    `<h3 class="repo-name"><span>${owner}</span>/<a href="${repo.html_url}" target="_blank">${name}</a></h3>` +
+                    ( status ? `<span class="repo-status">${status}</span>` : '' ) +
+                `</div>` +
+                `<p class="repo-desc">${repo.description}</p>` +
+                `<ul class="repo-topics">${ ( repo.topics ?? [] ).slice( 0, 7 ).map( t => `<li>${t}</li>` ).join( '' ) }</ul>` +
+                `<ul class="repo-meta">` +
+                    ( key ? `<li class="repo-lang" style="--c:var(--lang-${key})">${repo.language}</li>` : '' ) +
+                    ( repo.license?.name ? `<li class="repo-license">` +
+                        `<i class="fa fa-balance-scale" aria-hidden="true"></i>` +
+                        `<span>${repo.license.name}</span>` +
+                    `</li>` : '' ) +
+                    ( repo.homepage ? `<li class="repo-homepage">` +
+                        `<i class="fa fa-link" aria-hidden="true"></i>` +
+                        `<a href="${repo.homepage}" target="_blank">${ repo.homepage.replace( /^https?:\/\//, '' ) }</a>` +
+                    `</li>` : '' ) +
+                    `<li class="repo-size">${ fSize( repo.size ) }</li>` +
+                    `<li class="repo-updated">Updated at ${ fDate( repo.updated_at ) }</li>` +
+                `</ul>` +
             `</div>` +
-            `<p class="repo-desc">${repo.description}</p>` +
-            `<ul class="repo-topics">${ ( repo.topics ?? [] ).slice( 0, 7 ).map( t => `<li>${t}</li>` ).join( '' ) }</ul>` +
-            `<ul class="repo-meta">` +
-                ( key ? `<li class="repo-lang" style="--c:var(--lang-${key})">${repo.language}</li>` : '' ) +
-                ( repo.license?.name ? `<li class="repo-license">` +
-                    `<i class="fa fa-balance-scale" aria-hidden="true"></i>` +
-                    `<span>${repo.license.name}</span>` +
-                `</li>` : '' ) +
-                ( repo.homepage ? `<li class="repo-homepage">` +
-                    `<i class="fa fa-link" aria-hidden="true"></i>` +
-                    `<a href="${repo.homepage}" target="_blank">${ repo.homepage.replace( /^https?:\/\//, '' ) }</a>` +
-                `</li>` : '' ) +
-                `<li class="repo-size">${ fSize( repo.size ) }</li>` +
-                `<li class="repo-updated">Updated at ${ fDate( repo.updated_at ) }</li>` +
-            `</ul>`;
+            `<div class="repo-stats">` +
+                `<div class="item">` +
+                    `<i class="fa fa-star-o" aria-hidden="true"></i>` +
+                    `<b>${ fNumber( repo.stargazers_count ) }</b><span>Stargazers</span>` +
+                `</div>` +
+                `<div class="item">` +
+                    `<i class="fa fa-heart-o" aria-hidden="true"></i>` +
+                    `<b>${ fNumber( repo.subscribers_count ) }</b><span>Subscribers</span>` +
+                `</div>` +
+                `<div class="item">` +
+                    `<i class="fa fa-code-fork" aria-hidden="true"></i>` +
+                    `<b>${ fNumber( repo.forks_count ) }</b><span>Forks</span>` +
+                `</div>` +
+                `<div class="item">` +
+                    `<i class="fa fa-bug" aria-hidden="true"></i>` +
+                    `<b>${ fNumber( repo.open_issues_count ) }</b><span>Issues</span>` +
+                `</div>` +
+            `</div>`;
 
             container.appendChild( r );
         } );
