@@ -26,6 +26,17 @@
         </header>
         <main role="main">
             <div class="repos">
+                <div class="repos-filter">
+                    <input type="text" name="search" class="repos-filter--search" placeholder="Search in repositories …" />
+                    <select name="type" class="repos-filter--select">
+                        <option value="">All</option>
+                    </select>
+                    <select name="lang" class="repos-filter--select">
+                        <option value="">All</option>
+                    </select>
+                    <a href="#" class="btn repos-filter--clear">Clear</a>
+                </div>
+                <div class="repos-list"></div>
             </div>
         </main>
         <footer role="contentinfo">
