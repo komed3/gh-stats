@@ -9,5 +9,11 @@ document.addEventListener( 'DOMContentLoaded', function () {
         $( s + 'busiestDay b' ).text( fDate( stats.busiestDay.date ) );
 
         contribCharts( $( '.contribs-info--years .chart' ).el, stats.yearlyTotals );
+
+        for ( const year of Object.keys( stats.yearlyTotals ) ) {
+            loadData( `year/${year}.csv` ).then( data => {
+                //
+            } ).catch( console.error );
+        }
     } ).catch( console.error );
 } );
