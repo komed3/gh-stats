@@ -31,6 +31,48 @@ const chart = ( container, options ) => {
     return new Chart( ctx, options );
 };
 
+const lineChart = ( container, [ labels, data ], cb ) => {
+    return chart( container, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [ {
+                data: data,
+                borderWidth: 2,
+                borderColor: '#39d353',
+                backgroundColor: '#39d35333',
+                pointRadius: 6,
+                pointBackgroundColor: '#010409',
+                pointBorderColor: '#39d353',
+                tension: 0.1
+            } ]
+        },
+        options: {
+            events: [],
+            plugins: { legend: false },
+            scales: {
+                x: {
+                    offset: true,
+                    ticks: {
+                        autoSkip: true,
+                        maxRotation: 0,
+                        minRotation: 0
+                    }
+                },
+                y: {
+                    grid: { lineWidth: 1, color: '#3d444d', drawTicks: false },
+                    border: { dash: [ 5, 5 ] },
+                    ticks: {
+                        maxTicksLimit: 4,
+                        callback: v => cb( v ),
+                        color: '#9198a1'
+                    }
+                }
+            }
+        }
+    } );
+};
+
 const contribRadar = ( container, data ) => {
     return chart( container, {
         type: 'radar',
@@ -69,46 +111,12 @@ const contribRadar = ( container, data ) => {
     } );
 };
 
+const contribCharts = ( container, data ) => {
+    return lineChart( container, [ Object.keys( data ), Object.values( data ) ], fNumber );
+};
+
 const distributionChart = ( container, labels, data ) => {
-    return chart( container, {
-        type: 'line',
-        data: {
-            labels,
-            datasets: [ {
-                data,
-                borderWidth: 2,
-                borderColor: '#39d353',
-                backgroundColor: '#39d35333',
-                pointRadius: 6,
-                pointBackgroundColor: '#010409',
-                pointBorderColor: '#39d353',
-                tension: 0.1
-            } ]
-        },
-        options: {
-            events: [],
-            plugins: { legend: false },
-            scales: {
-                x: {
-                    offset: true,
-                    ticks: {
-                        autoSkip: true,
-                        maxRotation: 0,
-                        minRotation: 0
-                    }
-                },
-                y: {
-                    grid: { lineWidth: 1, color: '#3d444d', drawTicks: false },
-                    border: { dash: [ 5, 5 ] },
-                    ticks: {
-                        maxTicksLimit: 3,
-                        callback: v => fPct( v / 100 ),
-                        color: '#9198a1'
-                    }
-                }
-            }
-        }
-    } );
+    return lineChart( container, [ labels, data ], fPct );
 };
 
 const weekdayDistribution = ( container, data ) => {
