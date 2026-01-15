@@ -1,6 +1,6 @@
 document.addEventListener( 'DOMContentLoaded', function () {
     loadData( 'repos.json' ).then( repos => {
-        const container = $( '.repos' ).el;
+        const container = $( '.repos-list' ).el;
         repos.forEach( repo => {
             const key = langKey( repo.language );
             const [ owner, name ] = repo.full_name.split( '/' );
