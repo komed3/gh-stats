@@ -30,9 +30,16 @@
                     <input type="text" name="search" class="repos-filter--search" placeholder="Search in repositories …" />
                     <select name="type" class="repos-filter--select">
                         <option value="">All</option>
+                        <option disabled>----------</option>
+                        <option value="public">Public</option>
+                        <option value="private">Private</option>
+                        <option value="archived">Archived</option>
+                        <option value="forked">Forked</option>
+                        <option value="template">Template</option>
                     </select>
                     <select name="lang" class="repos-filter--select">
                         <option value="">All</option>
+                        <option disabled>----------</option>
                     </select>
                     <a href="#" class="btn repos-filter--clear">Clear</a>
                 </div>
