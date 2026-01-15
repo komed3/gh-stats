@@ -6,8 +6,9 @@ const languages = ( container, languageSkills ) => {
             acc.sum += pct, acc.items.push( { lang, pct } ), acc
         ), { items: [], sum: 0 } );
 
-    const bar = el( 'div', { className: 'dashboard-languages--bar' } );
-    const legend = el( 'ul', { className: 'dashboard-languages--legend' } );
+    const widget = el( 'div', { className: 'widget widget-languages' } );
+    const bar = el( 'div', { className: 'widget-languages--bar' } );
+    const legend = el( 'ul', { className: 'widget-languages--legend' } );
 
     items.items.forEach( ( { lang, pct } ) => {
         const langKey = lang.toLowerCase().replace( /[^a-z0-9]/g, '-' );
@@ -17,5 +18,7 @@ const languages = ( container, languageSkills ) => {
     } );
 
     if ( items.sum < 1 ) bar.innerHTML += `<div style="--p:${ ( 1 - items.sum ) }"></div>`;
-    container.append( bar, legend );
+
+    widget.append( bar, legend );
+    container.appendChild( widget );
 };
