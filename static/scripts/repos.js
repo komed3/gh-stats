@@ -1,12 +1,38 @@
 document.addEventListener( 'DOMContentLoaded', function () {
     loadData( 'repos.json' ).then( repos => {
         const container = $( '.repos-list' ).el;
+        const filter_search = $( '.repos-filter--search' ).el;
+        const filter_type = $( '.repos-filter--select[name="type"]' ).el;
+        const filter_lang = $( '.repos-filter--select[name="lang"]' ).el;
         const langs = {};
+
+        const filter = () => {
+            const search = langKey( filter_search.value, ' ' );
+            const type = filter_type.value;
+            const lang = filter_lang.value;
+
+            container.querySelectorAll( '.repo' ).forEach( r => {
+                r.style.display = (
+                    r.getAttribute( 'search' ).includes( search ) &&
+                    ( ! type || r.classList.contains( type ) ) &&
+                    ( ! lang || r.classList.contains( lang ) )
+                ) ? '' : 'none';
+            } );
+        };
+
+        const clear = ( e ) => {
+            e.preventDefault();
+            filter_search.value = '';
+            filter_type.value = '';
+            filter_lang.value = '';
+            filter();
+        }
 
         repos.forEach( repo => {
             const key = langKey( repo.language );
             const [ owner, name ] = repo.full_name.split( '/' );
             const r = el( 'div', { className: `box item repo ${key}` } );
+            r.setAttribute( 'search', langKey( `${repo.full_name} ${repo.description}`, ' ' ) );
 
             let badge = 'cube', status = undefined;
             if ( repo.private ) r.classList.add( 'private' ), badge = 'lock', status = 'Private';
@@ -50,8 +76,13 @@ document.addEventListener( 'DOMContentLoaded', function () {
             container.appendChild( r );
         } );
 
-        $( '.repos-filter--select[name="lang"]' ).el.append( ...Object.entries( langs ).map(
+        filter_lang.append( ...Object.entries( langs ).map(
             ( [ key, lang ] ) => el( 'option', { value: key, text: lang } )
         ) );
+
+        filter_search.addEventListener( 'keyup', filter );
+        filter_type.addEventListener( 'change', filter );
+        filter_lang.addEventListener( 'change', filter );
+        $( '.repos-filter--clear' ).el.addEventListener( 'click', clear );
     } ).catch( console.error );
 } );
