@@ -23,6 +23,10 @@
     cursor: pointer;
 }
 
+.repos-filter select > option {
+    background: var( --box-color );
+}
+
 .repos-filter input:focus, .repos-filter select:focus {
     outline: 1px solid var( --accent-color );
 }
