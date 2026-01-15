@@ -1,16 +1,22 @@
 document.addEventListener( 'DOMContentLoaded', function () {
     loadData( 'repos.json' ).then( repos => {
         const container = $( '.repos-list' ).el;
+        const langs = {};
+
         repos.forEach( repo => {
             const key = langKey( repo.language );
             const [ owner, name ] = repo.full_name.split( '/' );
             const r = el( 'div', { className: `box item repo ${key}` } );
 
             let badge = 'cube', status = undefined;
+            if ( repo.private ) r.classList.add( 'private' ), badge = 'lock', status = 'Private';
+            else r.classList.add( 'public' );
+
             if ( repo.archived ) r.classList.add( 'archived' ), badge = 'file-archive-o', status = 'Archived';
-            else if ( repo.fork ) r.classList.add( 'fork' ), badge = 'code-fork', status = 'Forked';
-            else if ( repo.is_template ) r.classList.add( 'template' ), badge = 'clone', status = 'Template';
-            else if ( repo.private ) r.classList.add( 'private' ), badge = 'lock', status = 'Private';
+            if ( repo.fork ) r.classList.add( 'forked' ), badge = 'code-fork', status = 'Forked';
+            if ( repo.is_template ) r.classList.add( 'template' ), badge = 'clone', status = 'Template';
+
+            if ( key ) langs[ key ] = repo.language;
 
             r.innerHTML = `<div class="repo-info">` +
                 `<div class="repo-header">` +
@@ -43,5 +49,9 @@ document.addEventListener( 'DOMContentLoaded', function () {
 
             container.appendChild( r );
         } );
+
+        $( '.repos-filter--select[name="lang"]' ).el.append( ...Object.entries( langs ).map(
+            ( [ key, lang ] ) => el( 'option', { value: key, text: lang } )
+        ) );
     } ).catch( console.error );
 } );
