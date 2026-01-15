@@ -7,3 +7,8 @@
 .contribs-info--divider {
     background: var( --border-color );
 }
+
+.contribs-info .chart {
+    width: 100%;
+    height: 200px;
+}
