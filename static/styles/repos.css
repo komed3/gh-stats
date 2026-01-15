@@ -23,13 +23,13 @@
 }
 
 .repo-status {
-    padding: 0 8px;
-    line-height: 20px;
+    padding: 0 10px;
+    line-height: 22px;
     font-size: 13px;
     font-weight: 500;
     color: var( --muted-color );
     border: 1px solid var( --muted-color );
-    border-radius: 10px;
+    border-radius: 11px;
 }
 
 .repo-desc {
@@ -37,7 +37,7 @@
     color: var( --muted-color );
 }
 
-.repo-topics {
+.repo-topics, .repo-meta {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
@@ -47,10 +47,32 @@
 
 .repo-topics li {
     padding: 0 8px;
-    line-height: 20px;
+    line-height: 22px;
     font-size: 12px;
     font-weight: 500;
     color: var( --accent-color );
     background: var( --hover-accent );
-    border-radius: 10px;
+    border-radius: 11px;
+}
+
+.repo-meta {
+    gap: 20px;
+    margin: 0;
+    font-size: 13px;
+    color: var( --muted-color );
+}
+
+.repo-meta li {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.repo-lang::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: var( --c, var( --hover-accent ) );
+    border-radius: 5px;
 }

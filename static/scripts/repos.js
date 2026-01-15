@@ -19,7 +19,14 @@ document.addEventListener( 'DOMContentLoaded', function () {
             `</div>` +
             `<p class="repo-desc">${repo.description}</p>` +
             `<ul class="repo-topics">${ ( repo.topics ?? [] ).slice( 0, 7 ).map( t => `<li>${t}</li>` ).join( '' ) }</ul>` +
-            `<div class="repo-meta"></div>`;
+            `<ul class="repo-meta">` +
+                ( key ? `<li class="repo-lang" style="--c:var(--lang-${key})">${repo.language}</li>` : '' ) +
+                ( repo.license?.name ? `<li class="repo-license">` +
+                    `<i class="fa fa-balance-scale" aria-hidden="true"></i>` +
+                    `<span>${repo.license.name}</span>` +
+                `</li>` : '' ) +
+                `<li class="repo-updated">Updated at ${ fDate( repo.updated_at ) }</span></li>` +
+            `</ul>`;
 
             container.appendChild( r );
         } );
