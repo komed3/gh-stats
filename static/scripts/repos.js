@@ -25,7 +25,12 @@ document.addEventListener( 'DOMContentLoaded', function () {
                     `<i class="fa fa-balance-scale" aria-hidden="true"></i>` +
                     `<span>${repo.license.name}</span>` +
                 `</li>` : '' ) +
-                `<li class="repo-updated">Updated at ${ fDate( repo.updated_at ) }</span></li>` +
+                ( repo.homepage ? `<li class="repo-homepage">` +
+                    `<i class="fa fa-link" aria-hidden="true"></i>` +
+                    `<a href="${repo.homepage}" target="_blank">${ repo.homepage.replace( /^https?:\/\//, '' ) }</a>` +
+                `</li>` : '' ) +
+                `<li class="repo-size">${ fSize( repo.size ) }</li>` +
+                `<li class="repo-updated">Updated at ${ fDate( repo.updated_at ) }</li>` +
             `</ul>`;
 
             container.appendChild( r );
