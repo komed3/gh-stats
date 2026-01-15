@@ -58,3 +58,18 @@ const fSize = ( val, d = 0 ) => {
     const i = Math.floor( Math.log10( val * 1024 ) / 3 );
     return fNumber( val * 1024 / Math.pow( 1000, i ), d ) + [ 'B', 'kB', 'MB', 'GB' ][ i ];
 };
+
+document.addEventListener( 'DOMContentLoaded', function () {
+    const scrollTopBtn = $( '.scroll-top' );
+    scrollTopBtn.hide();
+
+    window.addEventListener( 'scroll', () => {
+        if ( window.scrollY > 300 ) scrollTopBtn.show();
+        else scrollTopBtn.hide();
+    } );
+
+    scrollTopBtn.el.addEventListener( 'click', ( e ) => {
+        e.preventDefault();
+        window.scrollTo( { top: 0, behavior: 'smooth' } );
+    } );
+} );
