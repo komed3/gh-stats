@@ -57,9 +57,9 @@ const skills = ( container, data ) => {
     }
 
     for ( const [ from, rels ] of Object.entries( data.relations ) ) {
-        for ( const [ to, value ] of Object.entries( rels ) ) {
+        for ( const [ to, ] of Object.entries( rels ) ) {
             if ( visited.has( from + to ) || visited.has( to + from ) ) continue;
-            edges.add( [ { from, to, value } ] );
+            edges.add( [ { from, to } ] );
             visited.add( from + to );
         }
     }
@@ -72,18 +72,18 @@ const skills = ( container, data ) => {
                 from: { enabled: true, scaleFactor: 0.6 }
             },
             color: { color: '#666' },
-            scaling: { min: 2, max: 2 },
-            smooth: false
+            smooth: false,
+            width: 3
         },
         nodes: {
             borderWidth: 0,
             color: { background: '#3d444d' },
             font: {
-                face: 'Noto Sans, sans-serif', size: 16, color: '#fff',
+                face: 'Noto Sans, sans-serif', color: '#fff',
                 strokeColor: '#000', strokeWidth: 2
             },
             margin: 10,
-            scaling: { min: 1, max: 3 },
+            scaling: { min: 1e3, max: 1e6, label: { enabled: true } },
             shape: 'circle'
         },
         physics: {
