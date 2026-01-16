@@ -1,8 +1,10 @@
 document.addEventListener( 'DOMContentLoaded', function () {
     loadData( 'stats.json' ).then( stats => {
+        const repos = stats.totalPublicRepos + stats.totalPrivateRepos;
+
         let s = '.stats-global--';
         $( s + 'contribs b' ).text( fNumber( stats.totalContribs, 1 ) );
-        $( s + 'repos b' ).text( fNumber( stats.totalPublicRepos ) );
+        $( s + 'repos b' ).text( fNumber( repos ) );
         $( s + 'gists b' ).text( fNumber( stats.totalGists ) );
         $( s + 'orgs b' ).text( fNumber( stats.numOrgs ) );
         $( s + 'disk b' ).text( fSize( stats.diskUsage ) );
@@ -30,5 +32,13 @@ document.addEventListener( 'DOMContentLoaded', function () {
         $( s + 'activeHour b' ).text( stats.mostActiveHour % 12 + ( stats.mostActiveHour >= 12 ? 'pm' : 'am' ) + ' UTC' );
         $( s + 'activePeriod b' ).text( stats.mostActivePeriod );
         $( s + 'commonActivity b' ).text( stats.mostCommonActivity );
+
+        s = '.stats-skills--stats-';
+        $( s + 'mostUsed b' ).text( stats.mostUsedLang.lang );
+        $( s + 'leastUsed b' ).text( stats.leastUsedLang.lang );
+        $( s + 'codeSize b' ).text( fSize( stats.totalCodeSize ) );
+        $( s + 'numLangs b' ).text( fFullNum( stats.numLanguages ) );
+        $( s + 'langPerRepo b' ).text( fNumber( repos / stats.numLanguages, 1 ) );
+        $( s + 'diversity b' ).text( fNumber( stats.languageDiversity, 2 ) );
     } ).catch( console.error );
 } );
