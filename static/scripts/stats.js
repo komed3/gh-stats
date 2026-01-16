@@ -35,10 +35,10 @@ document.addEventListener( 'DOMContentLoaded', function () {
         $( s + 'commonActivity b' ).text( stats.mostCommonActivity );
 
         s = '.stats-skills--stats-';
+        $( s + 'codeSize b' ).text( fSize( stats.totalCodeSize, 1 ) );
+        $( s + 'numLangs b' ).text( fFullNum( stats.numLanguages ) );
         $( s + 'mostUsed b' ).text( stats.mostUsedLang.lang );
         $( s + 'leastUsed b' ).text( stats.leastUsedLang.lang );
-        $( s + 'codeSize b' ).text( fSize( stats.totalCodeSize ) );
-        $( s + 'numLangs b' ).text( fFullNum( stats.numLanguages ) );
         $( s + 'langPerRepo b' ).text( fNumber( repos / stats.numLanguages, 1 ) );
         $( s + 'diversity b' ).text( fNumber( stats.languageDiversity, 2 ) );
         $( s + 'loc b' ).text( fNumber( loc ) );
