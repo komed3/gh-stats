@@ -44,5 +44,6 @@ document.addEventListener( 'DOMContentLoaded', function () {
 
     loadData( 'activity.json' ).then( activity => {
         heatmap( $( '.stats-heatmap--graph .chart' ).el, activity.heatmapPct );
+        hourDistribution( $( '.stats-activity .chart' ).el, activity.hoursPct );
     } ).catch( console.error );
 } );
