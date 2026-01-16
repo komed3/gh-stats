@@ -26,8 +26,8 @@ document.addEventListener( 'DOMContentLoaded', function () {
         $( s + 'trend b' ).text( fNumber( stats.commitTrend ) );
 
         s = '.stats-heatmap--stats-';
-        $( s + 'avgYear b' ).text( fNumber( stats.avgContribsPerYear, 1 ) );
-        $( s + 'avgDay b' ).text( fNumber( stats.avgContribsPerDay, 1 ) );
+        $( s + 'avgYear b' ).text( fFullNum( stats.avgContribsPerYear ) );
+        $( s + 'avgDay b' ).text( fFullNum( stats.avgContribsPerDay ) );
         $( s + 'activeWd b' ).text( [ 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday' ][ stats.mostActiveWeekday ] );
         $( s + 'activeHour b' ).text( stats.mostActiveHour % 12 + ( stats.mostActiveHour >= 12 ? 'pm' : 'am' ) + ' UTC' );
         $( s + 'activePeriod b' ).text( stats.mostActivePeriod );
