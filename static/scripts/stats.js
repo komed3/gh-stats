@@ -23,5 +23,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
         $( s + 'hours b' ).text( fNumber( stats.estimatedCodingHours, 1 ) );
         $( s + 'value b' ).text( fMoney( stats.estimatedCodingValueUSD ) );
         $( s + 'trend b' ).text( fNumber( stats.commitTrend ) );
+
+        //
     } ).catch( console.error );
 } );
