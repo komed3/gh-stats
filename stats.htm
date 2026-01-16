@@ -31,6 +31,43 @@
         </header>
         <main role="main">
             <div class="stats">
+                <div class="box stats-box stats-heatmap">
+                    <div class="stats-heatmap--graph">
+                        <h3 class="box-hl">Activity Heatmap</h3>
+                        <div class="chart"></div>
+                    </div>
+                    <div class="stats-box--divider stats-heatmap--divider"></div>
+                    <div class="stats-box--grid stats-heatmap--stats">
+                        <div class="item stats-heatmap--stats-avgYear">
+                            <b></b>
+                            <span>Contribs per Year</span>
+                        </div>
+                        <div class="item stats-heatmap--stats-avgDay">
+                            <b></b>
+                            <span>Contribs per Day</span>
+                        </div>
+                        <div class="item stats-heatmap--stats-activeWd">
+                            <b></b>
+                            <span>Active Weekday</span>
+                        </div>
+                        <div class="item stats-heatmap--stats-activeHour">
+                            <b></b>
+                            <span>Active Hour</span>
+                        </div>
+                        <div class="item stats-heatmap--stats-activePeriod">
+                            <b></b>
+                            <span>Active Day Time</span>
+                        </div>
+                        <div class="item stats-heatmap--stats-commonActivity">
+                            <b></b>
+                            <span>Common Activity</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="box stats-activity">
+                    <h3 class="box-hl">Activity Distribution by Hours</h3>
+                    <div class="chart"></div>
+                </div>
                 <div class="stats-grid stats-global">
                     <div class="item stats-global--contribs">
                         <i class="fa fa-code" aria-hidden="true"></i>
@@ -138,44 +175,17 @@
                         <span>Commit Trend</span>
                     </div>
                 </div>
-                <div class="box stats-box stats-heatmap">
-                    <div class="stats-heatmap--graph">
-                        <h3 class="box-hl">Activity Heatmap</h3>
+                <div class="box stats-box stats-perf">
+                    <div class="stats-perf--percentiles">
+                        <h3 class="box-hl">Percentiles</h3>
                         <div class="chart"></div>
                     </div>
-                    <div class="stats-box--divider stats-heatmap--divider"></div>
-                    <div class="stats-box--grid stats-heatmap--stats">
-                        <div class="item stats-heatmap--stats-avgYear">
-                            <b></b>
-                            <span>Contribs per Year</span>
-                        </div>
-                        <div class="item stats-heatmap--stats-avgDay">
-                            <b></b>
-                            <span>Contribs per Day</span>
-                        </div>
-                        <div class="item stats-heatmap--stats-activeWd">
-                            <b></b>
-                            <span>Active Weekday</span>
-                        </div>
-                        <div class="item stats-heatmap--stats-activeHour">
-                            <b></b>
-                            <span>Active Hour</span>
-                        </div>
-                        <div class="item stats-heatmap--stats-activePeriod">
-                            <b></b>
-                            <span>Active Day Time</span>
-                        </div>
-                        <div class="item stats-heatmap--stats-commonActivity">
-                            <b></b>
-                            <span>Common Activity</span>
-                        </div>
+                    <div class="stats-box--divider stats-perf--divider"></div>
+                    <div class="stats-perf--streaks">
+                        <h3 class="box-hl">Streaks</h3>
+                        <div class="chart"></div>
                     </div>
                 </div>
-                <div class="box stats-activity">
-                    <h3 class="box-hl">Activity Distribution by Hours</h3>
-                    <div class="chart"></div>
-                </div>
-                <div class="stats-streaks"></div>
                 <div class="box stats-box stats-skills">
                     <div class="stats-skills--vis">
                         <h3 class="box-hl">Programming Skills</h3>
