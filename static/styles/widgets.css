@@ -79,3 +79,9 @@
     filter: brightness( 1.6 );
     cursor: help;
 }
+
+.widget-skills {
+    pointer-events: none;
+    width: 100%;
+    height: 420px;
+}
