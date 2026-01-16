@@ -32,7 +32,11 @@ const heatmap = ( container, data ) => {
     const wd = [ 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday' ];
     const max = Math.log( data.reduce( ( m, day ) => Math.max( m, ...day ), 0 ) * 100 );
 
+    for ( let h = -1; h < 24; h++ ) widget.appendChild( el( 'div', { className: 'hour', innerHTML: h % 2 === 0 ? h : '' } ) );
+
     data.forEach( ( day, d ) => {
+        widget.appendChild( el( 'div', { className: 'day', innerHTML: d % 2 === 0 ? wd[ d ].substring( 0, 3 ) : '' } ) );
+
         day.forEach( ( v, h ) => {
             const item = el( 'div', { className: `item l${ v === 0 ? 0 : Math.round( Math.log( v * 100 ) / max * 4 ) }` } );
             item.setAttribute( 'title', `${ wd[ d ] }, ${ ( h % 12 ) }${ h >= 12 ? 'pm' : 'am' } UTC: ${ fPct( v / 100, 2 ) }` );
