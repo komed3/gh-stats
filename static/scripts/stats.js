@@ -47,6 +47,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
         $( s + 'lph b' ).text( fNumber( loc / stats.estimatedCodingHours, 1 ) );
 
         percentilesChart( $( '.stats-perf--percentiles .chart' ).el, stats.contribPercentiles );
+        streakChart( $( '.stats-perf--streaks .chart' ).el, stats.currentStreak.days, stats.longestStreak.days );
     } ).catch( console.error );
 
     loadData( 'activity.json' ).then( activity => {

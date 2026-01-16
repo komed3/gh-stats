@@ -79,7 +79,9 @@ const barChart = ( container, [ labels, data ], cb ) => {
         data: {
             labels: labels,
             datasets: [ {
-                data: data
+                data: data,
+                backgroundColor: '#39d353',
+                borderRadius: 4
             } ]
         },
         options: {
@@ -177,4 +179,8 @@ const percentilesChart = ( container, data ) => {
         Object.keys( data ).reverse().map( c => c.substring( 1 ) + '%' ),
         Object.values( data ).reverse()
     ], fNumber );
+};
+
+const streakChart = ( container, current, longest ) => {
+    return barChart( container, [ [ 'Current', 'Longest' ], [ current, longest ] ], fNumber );
 };
