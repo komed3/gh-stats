@@ -123,7 +123,7 @@ runner( async () => {
         const p = size / total; return s + p * Math.log2( p );
     }, 0 ) );
 
-    const langEntries = Object.entries( languages );
+    const langEntries = Object.entries( languages.langs );
     const numLanguages = langEntries.length;
     const totalCodeSize = langEntries.reduce( ( s, [, size ] ) => s + size, 0 );
     const { max: mostUsedLang, min: leastUsedLang } = codeExtrema( langEntries );
