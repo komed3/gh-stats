@@ -132,13 +132,13 @@ runner( async () => {
     const languageDiversity = diversity( langEntries, totalCodeSize );
 
     // Activity
-    const arrMaxMin = ( data ) => ( {
-        max: data.indexOf( Math.max( ...data ) ),
-        min: data.indexOf( Math.min( ...data ) )
+    const arrMaxMin = ( data, offset = 0 ) => ( {
+        max: data.indexOf( Math.max( ...data ) ) + offset % data.length,
+        min: data.indexOf( Math.min( ...data ) ) + offset % data.length
     } );
 
     const { max: mostActiveWeekday, min: leastActiveWeekday } = arrMaxMin( activity.weekdays );
-    const { max: mostActiveHour, min: leastActiveHour } = arrMaxMin( activity.hours );
+    const { max: mostActiveHour, min: leastActiveHour } = arrMaxMin( activity.hours, 1 );
     const { period: mostActivePeriod } = Object.entries( activity.periods ).reduce(
         ( acc, [ period, count ] ) => count > acc.count ? { period, count } : acc,
         { period: '', count: 0 }
