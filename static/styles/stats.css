@@ -36,7 +36,8 @@
     color: var( --muted-color );
 }
 
-.stats-activity .chart {
+.stats-activity .chart,
+.stats-perf .chart {
     width: 100%;
     height: 180px;
 }
