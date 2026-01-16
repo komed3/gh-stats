@@ -44,3 +44,38 @@
     background: var( --c, var( --hover-accent ) );
     border-radius: 5px;
 }
+
+.widget-heatmap {
+    display: grid;
+    grid-template-columns: 32px repeat( 24, 1fr );
+    grid-template-rows: 16px repeat( 7, 1fr );
+    gap: 3px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var( --muted-color );
+}
+
+.widget-heatmap .l0 { background: var( --l0 ) }
+.widget-heatmap .l1 { background: var( --l1 ) }
+.widget-heatmap .l2 { background: var( --l2 ) }
+.widget-heatmap .l3 { background: var( --l3 ) }
+.widget-heatmap .l4 { background: var( --l4 ) }
+
+.widget-heatmap .hour {
+    justify-self: center;
+}
+
+.widget-heatmap .day {
+    align-self: center;
+}
+
+.widget-heatmap .item {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    border-radius: 2px;
+}
+
+.widget-heatmap .item:hover {
+    filter: brightness( 1.6 );
+    cursor: help;
+}
