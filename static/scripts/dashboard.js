@@ -29,7 +29,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
         $( s + 'streak b' ).text( fNumber( stats.currentStreak?.days ) );
         $( s + 'level b' ).text( stats.ghLevel );
         $( s + 'reach b' ).text( fNumber( stats.socialReach ) );
-        $( s + 'repos b' ).text( fNumber( stats.totalPublicRepos ) );
+        $( s + 'repos b' ).text( fNumber( stats.totalPublicRepos + stats.totalPrivateRepos ) );
         $( s + 'stars b' ).text( fNumber( stats.totalStars ) );
         $( s + 'hours b' ).text( fNumber( stats.estimatedCodingHours, 1 ) );
 
