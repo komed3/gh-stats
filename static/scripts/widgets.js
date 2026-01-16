@@ -71,7 +71,7 @@ const skills = ( container, data ) => {
                 to: { enabled: true, scaleFactor: 0.6 },
                 from: { enabled: true, scaleFactor: 0.6 }
             },
-            color: { color: '#666' },
+            color: { color: '#3d444d' },
             smooth: false,
             width: 3
         },
