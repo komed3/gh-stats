@@ -27,7 +27,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 
         s = '.stats-heatmap--stats-';
         $( s + 'avgYear b' ).text( fFullNum( stats.avgContribsPerYear ) );
-        $( s + 'avgDay b' ).text( fFullNum( stats.avgContribsPerDay ) );
+        $( s + 'avgDay b' ).text( fFullNum( stats.avgContribsPerDay, 1 ) );
         $( s + 'activeWd b' ).text( [ 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday' ][ stats.mostActiveWeekday ] );
         $( s + 'activeHour b' ).text( stats.mostActiveHour % 12 + ( stats.mostActiveHour >= 12 ? 'pm' : 'am' ) + ' UTC' );
         $( s + 'activePeriod b' ).text( stats.mostActivePeriod );
@@ -45,5 +45,9 @@ document.addEventListener( 'DOMContentLoaded', function () {
     loadData( 'activity.json' ).then( activity => {
         heatmap( $( '.stats-heatmap--graph .chart' ).el, activity.heatmapPct );
         hourDistribution( $( '.stats-activity .chart' ).el, activity.hoursPct );
+    } ).catch( console.error );
+
+    loadData( 'languages.json' ).then( languages => {
+        skills( $( '.stats-skills .chart' ).el, languages );
     } ).catch( console.error );
 } );

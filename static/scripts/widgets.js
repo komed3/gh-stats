@@ -48,3 +48,53 @@ const heatmap = ( container, data ) => {
 
     container.appendChild( widget );
 };
+
+const skills = ( container, data ) => {
+    const nodes = new vis.DataSet(), edges = new vis.DataSet();
+
+    for ( const [ lang, { weight } ] of Object.entries( data.langs ) ) {
+        nodes.add( [ { id: lang, label: lang, value: weight, color: LANGS[ langKey( lang ) ] } ] );
+    }
+
+    for ( const [ from, rels ] of Object.entries( data.relations ) ) {
+        for ( const [ to, value ] of Object.entries( rels ) ) {
+            edges.add( [ { from, to, value } ] );
+        }
+    }
+
+    const widget = el( 'div', { className: 'widget widget-skills' } );
+    const network = new vis.Network( widget, { nodes, edges }, {
+        edges: {
+            arrows: { to: { enabled: true } },
+            color: { color: '#888' },
+            scaling: { min: 2, max: 6 }
+        },
+        nodes: {
+            borderWidth: 0,
+            color: { background: '#3d444d' },
+            font: {
+                face: 'Noto Sans, sans-serif', size: 16, color: '#fff',
+                strokeColor: '#000', strokeWidth: 2
+            },
+            margin: 10,
+            scaling: { min: 1, max: 3 },
+            shape: 'circle'
+        },
+        physics: {
+            solver: 'forceAtlas2Based',
+            forceAtlas2Based: {
+                gravitationalConstant: -15,
+                centralGravity: 0.012,
+                springLength: 15,
+                springConstant: 0.05,
+                avoidOverlap: 0.7
+            },
+            stabilization: {
+                iterations: 10000
+            }
+        }
+    } );
+
+    container.appendChild( widget );
+    return network;
+};
