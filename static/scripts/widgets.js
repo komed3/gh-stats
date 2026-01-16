@@ -66,7 +66,7 @@ const skills = ( container, data ) => {
     const network = new vis.Network( widget, { nodes, edges }, {
         edges: {
             arrows: { to: { enabled: true } },
-            color: { color: '#888' },
+            color: { color: '#666' },
             scaling: { min: 2, max: 6 }
         },
         nodes: {
