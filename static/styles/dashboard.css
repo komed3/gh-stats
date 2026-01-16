@@ -1,39 +1,3 @@
-.dashboard-stats {
-    display: grid;
-    grid-template-columns: repeat( 7, 1fr );
-    gap: 20px;
-    margin: 40px 0;
-}
-
-.dashboard-stats .item {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-}
-
-.dashboard-stats .item i {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-    background: var( --hover-accent );
-    border-radius: 50%;
-}
-
-.dashboard-stats .item b {
-    margin: 8px 0 2px;
-    font-size: 25px;
-    font-weight: 600;
-}
-
-.dashboard-stats .item span {
-    font-size: 13px;
-    font-weight: 300;
-    color: var( --muted-color );
-}
-
 .dashboard-contribs {
     display: grid;
     grid-template-columns: 7fr 1px 3fr;
