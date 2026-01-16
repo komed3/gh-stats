@@ -8,6 +8,7 @@
         <link rel="icon" href="/static/favicon.svg" sizes="any" type="image/svg+xml" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
         <link rel="stylesheet" href="/static/styles/app.min.css" />
+        <link rel="stylesheet" href="/static/styles/stats.min.css" />
         <link rel="stylesheet" href="/static/styles/stats-grid.min.css" />
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="/static/scripts/app.min.js"></script>
@@ -36,10 +37,25 @@
                         <b></b>
                         <span>Repositories</span>
                     </div>
+                    <div class="item stats-global--gists">
+                        <i class="fa fa-codepen" aria-hidden="true"></i>
+                        <b></b>
+                        <span>Gists</span>
+                    </div>
+                    <div class="item stats-global--orgs">
+                        <i class="fa fa-cog" aria-hidden="true"></i>
+                        <b></b>
+                        <span>Organizations</span>
+                    </div>
                     <div class="item stats-global--disk">
                         <i class="fa fa-database" aria-hidden="true"></i>
                         <b></b>
                         <span>Disk Usage</span>
+                    </div>
+                    <div class="item stats-global--plan">
+                        <i class="fa fa-certificate" aria-hidden="true"></i>
+                        <b></b>
+                        <span>GitHub Plan</span>
                     </div>
                     <div class="item stats-global--age">
                         <i class="fa fa-calendar-o" aria-hidden="true"></i>
@@ -61,6 +77,11 @@
                         <b></b>
                         <span>GitHub Level</span>
                     </div>
+                    <div class="item stats-global--rank">
+                        <i class="fa fa-trophy" aria-hidden="true"></i>
+                        <b></b>
+                        <span>GitHub Rank</span>
+                    </div>
                     <div class="item stats-global--powerLevel">
                         <i class="fa fa-bolt" aria-hidden="true"></i>
                         <b></b>
@@ -71,8 +92,13 @@
                         <b></b>
                         <span>Total Repo Size</span>
                     </div>
-                    <div class="item stats-global--projectMaturity">
+                    <div class="item stats-global--accountHealth">
                         <i class="fa fa-shield" aria-hidden="true"></i>
+                        <b></b>
+                        <span>Account Health</span>
+                    </div>
+                    <div class="item stats-global--projectMaturity">
+                        <i class="fa fa-asterisk" aria-hidden="true"></i>
                         <b></b>
                         <span>Project Maturity</span>
                     </div>
@@ -100,6 +126,11 @@
                         <i class="fa fa-dollar" aria-hidden="true"></i>
                         <b></b>
                         <span>Est. Coding Value</span>
+                    </div>
+                    <div class="item stats-global--trend">
+                        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                        <b></b>
+                        <span>Commit Trend</span>
                     </div>
                 </div>
                 <div class="box stats-heatmap">
