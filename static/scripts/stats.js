@@ -41,4 +41,8 @@ document.addEventListener( 'DOMContentLoaded', function () {
         $( s + 'langPerRepo b' ).text( fNumber( repos / stats.numLanguages, 1 ) );
         $( s + 'diversity b' ).text( fNumber( stats.languageDiversity, 2 ) );
     } ).catch( console.error );
+
+    loadData( 'activity.json' ).then( activity => {
+        heatmap( $( '.stats-heatmap--graph .chart' ).el, activity.heatmapPct );
+    } ).catch( console.error );
 } );

@@ -1,5 +1,5 @@
-const languages = ( container, languageSkills ) => {
-    const items = Object.entries( languageSkills )
+const languages = ( container, data ) => {
+    const items = Object.entries( data )
         .filter( ( [ , { pct } ] ) => pct >= 0.025 )
         .map( ( [ lang, { pct } ] ) => ( { lang, pct } ) )
         .sort( ( a, b ) => b.pct - a.pct )
@@ -24,5 +24,11 @@ const languages = ( container, languageSkills ) => {
     }
 
     widget.append( bar, legend );
+    container.appendChild( widget );
+};
+
+const heatmap = ( container, data ) => {
+    const widget = el( 'div', { className: 'widget widget-heatmap' } );
+
     container.appendChild( widget );
 };
