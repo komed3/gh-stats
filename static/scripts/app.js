@@ -54,6 +54,8 @@ const fFullNum = ( val, d = 0, opt = {} ) => fNumber( val, d, { notation: 'stand
 
 const fPct = ( val, d = 0, opt = {} ) => fNumber( val > 1 ? val / 100 : val, d, { style: 'percent', ...opt } );
 
+const fMoney = ( val, d = 0, opt = {} ) => fNumber( val, d, { style: 'currency', currency: 'USD', ...opt } );
+
 const fSize = ( val, d = 0 ) => {
     const i = Math.floor( Math.log10( val * 1024 ) / 3 );
     return fNumber( val * 1024 / Math.pow( 1000, i ), d ) + [ 'B', 'kB', 'MB', 'GB' ][ i ];

@@ -21,7 +21,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
         $( s + 'contribDensity b' ).text( fNumber( stats.contributionDensity, 1 ) );
         $( s + 'activityConsistency b' ).text( fNumber( stats.activityConsistency, 2 ) );
         $( s + 'hours b' ).text( fNumber( stats.estimatedCodingHours, 1 ) );
-        //$( s + 'value b' ).text( fMoney( stats.estimatedCodingValueUSD ) );
+        $( s + 'value b' ).text( fMoney( stats.estimatedCodingValueUSD ) );
         $( s + 'trend b' ).text( fNumber( stats.commitTrend ) );
     } ).catch( console.error );
 } );
