@@ -1,6 +1,7 @@
 document.addEventListener( 'DOMContentLoaded', function () {
     loadData( 'stats.json' ).then( stats => {
         const repos = stats.totalPublicRepos + stats.totalPrivateRepos;
+        const loc = stats.totalCodeSize / 80;
 
         let s = '.stats-global--';
         $( s + 'contribs b' ).text( fNumber( stats.totalContribs, 1 ) );
@@ -40,6 +41,10 @@ document.addEventListener( 'DOMContentLoaded', function () {
         $( s + 'numLangs b' ).text( fFullNum( stats.numLanguages ) );
         $( s + 'langPerRepo b' ).text( fNumber( repos / stats.numLanguages, 1 ) );
         $( s + 'diversity b' ).text( fNumber( stats.languageDiversity, 2 ) );
+        $( s + 'loc b' ).text( fNumber( loc ) );
+        $( s + 'lpr b' ).text( fNumber( loc / repos ) );
+        $( s + 'lpc b' ).text( fNumber( loc / stats.totalContribs, 1 ) );
+        $( s + 'lph b' ).text( fNumber( loc / stats.estimatedCodingHours, 1 ) );
     } ).catch( console.error );
 
     loadData( 'activity.json' ).then( activity => {
