@@ -51,7 +51,7 @@ const heatmap = ( container, data ) => {
 const skills = ( container, data ) => {
     const nodes = new vis.DataSet(), edges = new vis.DataSet(), visited = new Set();
 
-    for ( const [ lang, { weight } ] of Object.entries( data.langs ) ) {
+    for ( const [ lang, weight ] of Object.entries( data.langs ) ) {
         nodes.add( [ { id: lang, label: lang, value: weight, color: LANGS[ langKey( lang ) ] } ] );
     }
 
@@ -71,8 +71,8 @@ const skills = ( container, data ) => {
                 from: { enabled: true, scaleFactor: 0.6 }
             },
             color: { color: '#3d444d' },
-            smooth: false,
-            width: 3
+            smooth: true,
+            width: 2
         },
         nodes: {
             borderWidth: 0,
@@ -82,13 +82,13 @@ const skills = ( container, data ) => {
                 strokeColor: '#000', strokeWidth: 2
             },
             margin: 10,
-            scaling: { min: 1e3, max: 1e6, label: { enabled: true } },
+            scaling: { min: 1e4, max: 1e6 },
             shape: 'circle'
         },
         physics: {
             solver: 'forceAtlas2Based',
             forceAtlas2Based: {
-                gravitationalConstant: -50,
+                gravitationalConstant: -25,
                 centralGravity: 0.01,
                 springLength: 100,
                 springConstant: 0.05,
