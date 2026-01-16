@@ -1,7 +1,6 @@
 document.addEventListener( 'DOMContentLoaded', function () {
     loadData( 'stats.json' ).then( stats => {
         let s = '.stats-global--';
-
         $( s + 'contribs b' ).text( fNumber( stats.totalContribs, 1 ) );
         $( s + 'repos b' ).text( fNumber( stats.totalPublicRepos ) );
         $( s + 'gists b' ).text( fNumber( stats.totalGists ) );
@@ -24,6 +23,12 @@ document.addEventListener( 'DOMContentLoaded', function () {
         $( s + 'value b' ).text( fMoney( stats.estimatedCodingValueUSD ) );
         $( s + 'trend b' ).text( fNumber( stats.commitTrend ) );
 
-        //
+        s = '.stats-heatmap--stats-';
+        $( s + 'avgYear b' ).text( fNumber( stats.avgContribsPerYear, 1 ) );
+        $( s + 'avgDay b' ).text( fNumber( stats.avgContribsPerDay, 1 ) );
+        $( s + 'activeWd b' ).text( [ 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday' ][ stats.mostActiveWeekday ] );
+        $( s + 'activeHour b' ).text( stats.mostActiveHour % 12 + ( stats.mostActiveHour >= 12 ? 'pm' : 'am' ) + ' UTC' );
+        $( s + 'activePeriod b' ).text( stats.mostActivePeriod );
+        $( s + 'commonActivity b' ).text( stats.mostCommonActivity );
     } ).catch( console.error );
 } );
