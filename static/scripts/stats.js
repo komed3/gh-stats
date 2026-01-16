@@ -45,6 +45,8 @@ document.addEventListener( 'DOMContentLoaded', function () {
         $( s + 'lpr b' ).text( fNumber( loc / repos ) );
         $( s + 'lpc b' ).text( fNumber( loc / stats.totalContribs, 1 ) );
         $( s + 'lph b' ).text( fNumber( loc / stats.estimatedCodingHours, 1 ) );
+
+        percentilesChart( $( '.stats-perf--percentiles .chart' ).el, stats.contribPercentiles );
     } ).catch( console.error );
 
     loadData( 'activity.json' ).then( activity => {

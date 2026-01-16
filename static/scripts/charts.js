@@ -172,3 +172,10 @@ const periodDistribution = ( container, data ) => {
         'Morning', 'Daytime', 'Evening', 'Night'
     ], Object.values( data ) );
 };
+
+const percentilesChart = ( container, data ) => {
+    return barChart( container, [
+        Object.keys( data ).reverse().map( c => c.substring( 1 ) + '%' ),
+        Object.values( data ).reverse()
+    ], fNumber );
+};
