@@ -81,7 +81,8 @@ const barChart = ( container, [ labels, data ], cb ) => {
             datasets: [ {
                 data: data,
                 backgroundColor: '#39d353',
-                borderRadius: 4
+                borderRadius: 4,
+                barThickness: 60
             } ]
         },
         options: {
