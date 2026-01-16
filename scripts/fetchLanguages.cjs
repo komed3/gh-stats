@@ -4,7 +4,7 @@ const { runner } = require( '../lib/runner.cjs' );
 const { writeJSON } = require( '../lib/storage.cjs' );
 
 runner( async () => {
-    const langs = {};
+    const langs = {}, relations = {};
 
     for ( const res of await ghIterate( '/user/repos', { per_page: 100, affiliation: 'owner' } ) ) {
         for ( const repo of res.data ) {
@@ -17,9 +17,17 @@ runner( async () => {
             for ( const [ lang, size ] of Object.entries( data ) ) {
                 if ( ! langs[ lang ] ) langs[ lang ] = size;
                 else langs[ lang ] += size;
+
+                if ( ! relations[ lang ] ) relations[ lang ] = {};
+
+                for ( const otherLang of Object.keys( data ) ) {
+                    if ( otherLang === lang ) continue;
+                    if ( ! relations[ lang ][ otherLang ] ) relations[ lang ][ otherLang ] = 1;
+                    else relations[ lang ][ otherLang ] += 1;
+                }
             }
         }
     }
 
-    await writeJSON( 'languages.json', langs );
+    await writeJSON( 'languages.json', { langs, relations } );
 } );
