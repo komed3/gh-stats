@@ -50,7 +50,7 @@ const heatmap = ( container, data ) => {
 };
 
 const skills = ( container, data ) => {
-    const nodes = new vis.DataSet(), edges = new vis.DataSet();
+    const nodes = new vis.DataSet(), edges = new vis.DataSet(), visited = new Set();
 
     for ( const [ lang, { weight } ] of Object.entries( data.langs ) ) {
         nodes.add( [ { id: lang, label: lang, value: weight, color: LANGS[ langKey( lang ) ] } ] );
@@ -58,16 +58,22 @@ const skills = ( container, data ) => {
 
     for ( const [ from, rels ] of Object.entries( data.relations ) ) {
         for ( const [ to, value ] of Object.entries( rels ) ) {
+            if ( visited.has( from + to ) || visited.has( to + from ) ) continue;
             edges.add( [ { from, to, value } ] );
+            visited.add( from + to );
         }
     }
 
     const widget = el( 'div', { className: 'widget widget-skills' } );
     const network = new vis.Network( widget, { nodes, edges }, {
         edges: {
-            arrows: { to: { enabled: true } },
+            arrows: {
+                to: { enabled: true, scaleFactor: 0.6 },
+                from: { enabled: true, scaleFactor: 0.6 }
+            },
             color: { color: '#666' },
-            scaling: { min: 2, max: 6 }
+            scaling: { min: 2, max: 2 },
+            smooth: false
         },
         nodes: {
             borderWidth: 0,
@@ -83,9 +89,9 @@ const skills = ( container, data ) => {
         physics: {
             solver: 'forceAtlas2Based',
             forceAtlas2Based: {
-                gravitationalConstant: -15,
-                centralGravity: 0.012,
-                springLength: 15,
+                gravitationalConstant: -50,
+                centralGravity: 0.01,
+                springLength: 100,
                 springConstant: 0.05,
                 avoidOverlap: 0.7
             },
@@ -96,5 +102,6 @@ const skills = ( container, data ) => {
     } );
 
     container.appendChild( widget );
+    network.fit();
     return network;
 };
