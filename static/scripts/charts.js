@@ -73,6 +73,41 @@ const lineChart = ( container, [ labels, data ], cb ) => {
     } );
 };
 
+const barChart = ( container, [ labels, data ], cb ) => {
+    return chart( container, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [ {
+                data: data
+            } ]
+        },
+        options: {
+            events: [],
+            plugins: { legend: false },
+            scales: {
+                x: {
+                    offset: true,
+                    ticks: {
+                        autoSkip: true,
+                        maxRotation: 0,
+                        minRotation: 0
+                    }
+                },
+                y: {
+                    grid: { lineWidth: 1, color: '#3d444d', drawTicks: false },
+                    border: { dash: [ 5, 5 ] },
+                    ticks: {
+                        maxTicksLimit: 4,
+                        callback: v => cb( v ),
+                        color: '#9198a1'
+                    }
+                }
+            }
+        }
+    } );
+};
+
 const contribRadar = ( container, data ) => {
     return chart( container, {
         type: 'radar',
