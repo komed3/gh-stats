@@ -155,9 +155,8 @@ const distributionChart = ( container, labels, data ) => {
 };
 
 const weekdayDistribution = ( container, data ) => {
-    return distributionChart( container, [
-        'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
-    ], [ data.pop(), ...data ] );
+    const wd = WD.slice();
+    return distributionChart( container, [ wd.pop(), ...wd ], [ data.pop(), ...data ] );
 };
 
 const hourDistribution = ( container, data ) => {

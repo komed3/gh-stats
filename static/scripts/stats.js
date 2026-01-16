@@ -29,7 +29,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
         s = '.stats-heatmap--stats-';
         $( s + 'avgYear b' ).text( fFullNum( stats.avgContribsPerYear ) );
         $( s + 'avgDay b' ).text( fFullNum( stats.avgContribsPerDay, 1 ) );
-        $( s + 'activeWd b' ).text( [ 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday' ][ stats.mostActiveWeekday ] );
+        $( s + 'activeWd b' ).text( WD[ stats.mostActiveWeekday ] );
         $( s + 'activeHour b' ).text( stats.mostActiveHour % 12 + ( stats.mostActiveHour >= 12 ? 'pm' : 'am' ) + ' UTC' );
         $( s + 'activePeriod b' ).text( stats.mostActivePeriod );
         $( s + 'commonActivity b' ).text( stats.mostCommonActivity );

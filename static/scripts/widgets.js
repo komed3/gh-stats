@@ -29,7 +29,6 @@ const languages = ( container, data ) => {
 
 const heatmap = ( container, data ) => {
     const widget = el( 'div', { className: 'widget widget-heatmap' } );
-    const wd = [ 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday' ];
     const max = Math.log( data.reduce( ( m, day ) => Math.max( m, ...day ), 0 ) * 100 );
 
     for ( let h = -1; h < 24; h++ ) widget.appendChild( el( 'div', {
@@ -37,11 +36,11 @@ const heatmap = ( container, data ) => {
     } ) );
 
     data.forEach( ( day, d ) => {
-        widget.appendChild( el( 'div', { className: 'day', innerHTML: wd[ d ].substring( 0, 3 ) } ) );
+        widget.appendChild( el( 'div', { className: 'day', innerHTML: WD[ d ].substring( 0, 3 ) } ) );
 
         day.forEach( ( v, h ) => {
             const item = el( 'div', { className: `item l${ v === 0 ? 0 : Math.round( Math.log( v * 100 ) / max * 4 ) }` } );
-            item.setAttribute( 'title', `${ wd[ d ] }, ${ ( h % 12 ) || 12 }${ h >= 12 ? 'pm' : 'am' } UTC: ${ fPct( v / 100, 2 ) }` );
+            item.setAttribute( 'title', `${ WD[ d ] }, ${ ( h % 12 ) || 12 }${ h >= 12 ? 'pm' : 'am' } UTC: ${ fPct( v / 100, 2 ) }` );
             widget.appendChild( item );
         } )
     } );

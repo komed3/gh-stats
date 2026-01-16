@@ -3,7 +3,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
         let s = '.contribs-info--stats-';
         $( s + 'avgYear b' ).text( fFullNum( stats.avgContribsPerYear ) );
         $( s + 'avgDay b' ).text( fFullNum( stats.avgContribsPerDay, 1 ) );
-        $( s + 'activeWd b' ).text( [ 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday' ][ stats.mostActiveWeekday ] );
+        $( s + 'activeWd b' ).text( WD[ stats.mostActiveWeekday ] );
         $( s + 'activePeriod b' ).text( stats.mostActivePeriod );
         $( s + 'codeProd b' ).text( fSize( stats.codeProductivity / 1024 ) );
         $( s + 'busiestDay b' ).text( fDate( stats.busiestDay.date ) );

@@ -1,3 +1,5 @@
+const WD = [ 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday' ];
+
 const LANGS = {
     '1c-enterprise': '#814ccc', '2-dimensional-array': '#38761d', '4d': '#004289', 'abap': '#e8274b',
     'abap-cds': '#555e25', 'ags-script': '#b9d9ff', 'aidl': '#34eb6b', 'al': '#3aa2b5', 'algol': '#d1e0db',
