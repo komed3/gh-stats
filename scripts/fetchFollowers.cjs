@@ -1,5 +1,5 @@
-const { ghGraphql } = require( '../lib/gh.cjs' );
 const { config } = require( '../lib/config.cjs' );
+const { ghGraphql } = require( '../lib/gh.cjs' );
 const { runner } = require( '../lib/runner.cjs' );
 const { writeJSON } = require( '../lib/storage.cjs' );
 
