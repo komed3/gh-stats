@@ -54,9 +54,9 @@ document.addEventListener( 'DOMContentLoaded', function () {
                 `<ul class="repo-topics">${ ( repo.topics ?? [] ).slice( 0, 7 ).map( t => `<li>${t}</li>` ).join( '' ) }</ul>` +
                 `<ul class="repo-meta">` +
                     ( key ? `<li class="repo-lang" style="--c:var(--lang-${key})">${repo.language}</li>` : '' ) +
-                    ( repo.license?.name ? `<li class="repo-license">` +
+                    ( repo.license ? `<li class="repo-license">` +
                         `<i class="fa fa-balance-scale" aria-hidden="true"></i>` +
-                        `<span>${repo.license.name}</span>` +
+                        `<span>${repo.license}</span>` +
                     `</li>` : '' ) +
                     ( repo.homepage ? `<li class="repo-homepage">` +
                         `<i class="fa fa-link" aria-hidden="true"></i>` +
@@ -68,9 +68,9 @@ document.addEventListener( 'DOMContentLoaded', function () {
             `</div>` +
             `<div class="repo-stats">` +
                 `<div><b>${ fNumber( repo.stargazers_count ) }</b><span>Stargazers</span></div>` +
-                `<div><b>${ fNumber( repo.subscribers_count ) }</b><span>Subscribers</span></div>` +
                 `<div><b>${ fNumber( repo.forks_count ) }</b><span>Forks</span></div>` +
                 `<div><b>${ fNumber( repo.open_issues_count ) }</b><span>Issues</span></div>` +
+                `<div><b>${ fNumber( repo.open_prs_count ) }</b><span>PRs</span></div>` +
             `</div>`;
 
             container.appendChild( r );
