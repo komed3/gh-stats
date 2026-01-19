@@ -36,14 +36,44 @@ document.addEventListener( 'DOMContentLoaded', function () {
         languages( $( '.dashboard-languages' ).el, stats.languageSkills );
     } ).catch( console.error );
 
-    loadData( 'follower.json' ).then( follower => {
+    loadData( 'follower.json' ).then( data => {
         const { el: container } = $( '.dashboard-followers--grid' );
-        for ( const { login, html_url, avatar_url } of follower.slice( 0, 36 ) ) {
-            const f = el( 'a', { className: 'item', href: html_url } );
-            f.setAttribute( 'target', '_blank' );
-            f.innerHTML += `<img src="${avatar_url}" alt="GitHub Profile Avatar" />`;
-            f.innerHTML += `<span>${login}</span>`;
-            container.append( f );
+        const followerList = Array.isArray( data ) ? data : data.followers;
+        const totalFollowers = Array.isArray( data ) ? null : data.totalFollowers;
+
+        let displayedCount = 0;
+        const displayLimit = 36;
+
+        const renderFollowers = ( limit ) => {
+            for ( let i = displayedCount; i < Math.min( followerList.length, limit ); i++ ) {
+                const d = followerList[ i ];
+                const f = el( 'a', { className: 'item', href: d.url, target: '_blank' } );
+                f.innerHTML = `
+                    <img src="${d.avatar_url}" alt="GitHub Profile Avatar" />
+                    <div class="name">${ d.name || d.login }</div>
+                    <div class="login">@${d.login}</div>
+                    ${ d.location || d.company || d.followers ? `
+                        <div class="info">
+                            ${ d.followers ? `<span>${ fNumber( d.followers ) } followers</span>` : '' }
+                            ${ d.location ? `<span><i class="fa fa-map-marker" aria-hidden="true"></i> ${d.location}</span>` : '' }
+                            ${ d.company ? `<span><i class="fa fa-building" aria-hidden="true"></i> ${d.company}</span>` : '' }
+                        </div>` : '' }
+                    ${ d.bio ? `<div class="bio">${d.bio}</div>` : '' }
+                `;
+                container.append( f );
+            }
+
+            displayedCount = Math.min( followerList.length, limit );
+        };
+
+        renderFollowers( displayLimit );
+
+        if ( totalFollowers && totalFollowers > displayLimit ) {
+            const wrapper = el( 'div', { className: 'dashboard-followers--more' } );
+            const btn = el( 'a', { className: 'btn', href: '#', textContent: `Load More` } );
+            btn.addEventListener( 'click', ( e ) => e.preventDefault() && renderFollowers( followerList.length ) );
+            wrapper.append( btn );
+            container.parentElement.append( wrapper );
         }
     } ).catch( console.error );
 
