@@ -76,3 +76,47 @@
 .calendar .legend .day:last-of-type {
     margin-right: 6px;
 }
+
+/* Responsive Design */
+@media ( max-width: 768px ) {
+    .calendar {
+        font-size: 10px;
+    }
+
+    .calendar .day {
+        border-radius: 1px;
+    }
+
+    .calendar .legend .day {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media ( max-width: 480px ) {
+    .calendar {
+        font-size: 9px;
+    }
+
+    .calendar .header {
+        margin: 0 0 4px 24px;
+    }
+
+    .calendar .grid {
+        gap: 2px;
+        margin-left: 24px;
+    }
+
+    .calendar .week {
+        gap: 2px;
+    }
+
+    .calendar .legend {
+        margin-top: 12px;
+    }
+
+    .calendar .legend .day {
+        width: 8px;
+        height: 8px;
+    }
+}
