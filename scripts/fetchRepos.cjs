@@ -45,10 +45,10 @@ runner( async () => {
                             watchers {
                                 totalCount
                             }
-                            issues {
+                            issues(states:[OPEN]) {
                                 totalCount
                             }
-                            pullRequests {
+                            pullRequests(states:[OPEN]) {
                                 totalCount
                             }
                             diskUsage
@@ -92,11 +92,12 @@ runner( async () => {
                 created_at: repo.createdAt,
                 updated_at: repo.updatedAt,
                 default_branch: repo.defaultBranchRef?.name || 'main',
-                language: repo.languages.nodes[0]?.name || null,
+                language: repo.languages.nodes[ 0 ]?.name || null,
                 stargazers_count: repo.stargazers.totalCount,
                 forks_count: repo.forkCount,
                 watchers_count: repo.watchers.totalCount,
                 open_issues_count: repo.issues.totalCount,
+                open_prs_count: repo.pullRequests.totalCount,
                 size: repo.diskUsage,
                 license: repo.licenseInfo?.name || null,
                 topics: repo.repositoryTopics.nodes.map( t => t.topic.name )
