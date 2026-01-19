@@ -167,4 +167,120 @@ footer {
     position: fixed;
     right: 40px;
     bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    background: var( --border-color ) !important;
+    z-index: 100;
+}
+
+.scroll-top:hover {
+    text-decoration: none;
+    background: var( --hover-color );
+}
+
+/* Responsive Design */
+@media ( max-width: 768px ) {
+    :root {
+        --content-width: 100%;
+        font-size: 14px;
+    }
+
+    header {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 40px auto;
+    }
+
+    header nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+
+    header h1 {
+        order: -1;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    main {
+        margin: 40px auto;
+    }
+
+    main .box {
+        padding: 15px;
+    }
+
+    footer {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin: 40px auto 100px;
+    }
+
+    .scroll-top {
+        right: 20px;
+        bottom: 60px;
+    }
+
+    a.btn, a.btn:link, a.btn:visited {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+}
+
+@media ( max-width: 480px ) {
+    :root {
+        font-size: 13px;
+    }
+
+    header {
+        gap: 15px;
+        margin: 30px auto;
+    }
+
+    header .logo {
+        width: 48px;
+        height: 48px;
+    }
+
+    header h1 {
+        font-size: 16px;
+    }
+
+    main {
+        margin: 30px auto;
+    }
+
+    main .box {
+        margin-bottom: 15px;
+        padding: 12px;
+    }
+
+    main .box-hl {
+        margin-bottom: 12px;
+        font-size: 15px;
+    }
+
+    footer {
+        gap: 15px;
+        margin: 30px auto 100px;
+        font-size: 12px;
+    }
+
+    a.btn, a.btn:link, a.btn:visited {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    .scroll-top {
+        left: 50%;
+        right: unset;
+        bottom: 20px;
+        transform: translateX( -50% );
+    }
 }
