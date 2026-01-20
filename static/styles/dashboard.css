@@ -38,16 +38,17 @@
 }
 
 .dashboard-followers--grid {
-    display: grid;
-    grid-template-columns: repeat( 3, 1fr );
-    gap: 20px;
+    column-count: 3;
+    column-gap: 20px;
 }
 
 .dashboard-followers--grid .item {
+    break-inside: avoid;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     gap: 12px;
+    margin-bottom: 20px;
     padding: 16px;
     text-align: center;
     text-decoration: none;
@@ -125,14 +126,13 @@
     }
 
     .dashboard-followers--grid {
-        grid-template-columns: repeat( 2, 1fr );
+        column-count: 2;
     }
 }
 
 @media ( max-width: 768px ) {
     .dashboard-followers--grid {
-        grid-template-columns: repeat( 2, 1fr );
-        gap: 15px;
+        column-gap: 15px;
     }
 
     .dashboard-followers--grid .item {
@@ -156,7 +156,7 @@
 
 @media ( max-width: 480px ) {
     .dashboard-followers--grid {
-        grid-template-columns: 1fr;
+        column-count: 1;
     }
 
     .dashboard-followers--grid .item {
