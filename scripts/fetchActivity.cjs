@@ -10,21 +10,35 @@ runner( async () => {
     const from = date.toISOString();
 
     console.log( `Fetching contributions for ${username} based on hours` );
-    const query = `query( $username: String!, $from: GitTimestamp!, $repoCursor: String! ) {
-        user( login: $username ) { repositories(
-            first: 50, after: $repoCursor, isFork: false,
-            ownerAffiliations: [ OWNER, ORGANIZATION_MEMBER ],
-            orderBy: { field: PUSHED_AT, direction: DESC }
-        ) {
-            pageInfo {
-                hasNextPage
-                endCursor
+    const query = `
+        query( $username: String!, $from: GitTimestamp!, $repoCursor: String! ) {
+            user( login: $username ) {
+                repositories(
+                    first: 50, after: $repoCursor, isFork: false,
+                    ownerAffiliations: [ OWNER, ORGANIZATION_MEMBER ],
+                    orderBy: { field: PUSHED_AT, direction: DESC }
+                ) {
+                    pageInfo {
+                        hasNextPage
+                        endCursor
+                    }
+                    nodes {
+                        defaultBranchRef {
+                            target {
+                                ... on Commit {
+                                    history( first: 100, since: $from ) {
+                                        nodes {
+                                            committedDate
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
-            nodes { defaultBranchRef { target { ... on Commit {
-                history( first: 100, since: $from ) { nodes { committedDate } }
-            } } } }
-        } }
-    }`;
+        }
+    `;
 
     let repoCursor = '';
     const repos = [];
