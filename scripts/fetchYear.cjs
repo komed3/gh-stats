@@ -14,17 +14,25 @@ runner( async () => {
     const username = config.username;
 
     console.log( `Fetching detailed contributions for ${username} in ${year}` );
-    const response = await ghGraphql( `query( $username: String!, $from: DateTime!, $to: DateTime! ) {
-        user( login: $username ) { contributionsCollection( from: $from, to: $to ) {
-            contributionCalendar { weeks { contributionDays {
-                color
-                contributionCount
-                contributionLevel
-                date
-                weekday
-            } } }
-        } }
-    }`, { username, from, to } );
+    const response = await ghGraphql( `
+        query( $username: String!, $from: DateTime!, $to: DateTime! ) {
+            user( login: $username ) {
+                contributionsCollection( from: $from, to: $to ) {
+                    contributionCalendar {
+                        weeks {
+                            contributionDays {
+                                color
+                                contributionCount
+                                contributionLevel
+                                date
+                                weekday
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    `, { username, from, to } );
 
     const collection = response.user.contributionsCollection;
     if ( ! collection ) throw new Error( 'No contributions collection found for user.' );

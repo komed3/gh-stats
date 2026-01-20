@@ -10,24 +10,30 @@ runner( async () => {
     const from = date.toISOString();
 
     console.log( `Fetching contributions for ${username} past last year` );
-    const res1 = await ghGraphql( `query( $username: String!, $from: DateTime! ) {
-        user( login: $username ) { contributionsCollection( from: $from ) {
-            commit: totalCommitContributions
-            issue: totalIssueContributions
-            pr: totalPullRequestContributions
-            review: totalPullRequestReviewContributions
-            repo: totalRepositoryContributions
-            contributionCalendar {
-                weeks { contributionDays {
-                    color
-                    contributionCount
-                    contributionLevel
-                    date
-                    weekday
-                } }
+    const res1 = await ghGraphql( `
+        query( $username: String!, $from: DateTime! ) {
+            user( login: $username ) {
+                contributionsCollection( from: $from ) {
+                    commit: totalCommitContributions
+                    issue: totalIssueContributions
+                    pr: totalPullRequestContributions
+                    review: totalPullRequestReviewContributions
+                    repo: totalRepositoryContributions
+                    contributionCalendar {
+                        weeks {
+                            contributionDays {
+                                color
+                                contributionCount
+                                contributionLevel
+                                date
+                                weekday
+                            }
+                        }
+                    }
+                }
             }
-        } }
-    }`, { username, from } );
+        }
+    `, { username, from } );
 
     const col = res1.user.contributionsCollection;
     if ( ! col ) throw new Error( 'No contributions collection found for user.' );
