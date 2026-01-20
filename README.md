@@ -7,6 +7,7 @@ This data is collected and analyzed:
 - Profile data and daily contributions
 - Followers and social reach
 - Repositories and organizations
+- Programming languages & skills
 
 ## Example
 
