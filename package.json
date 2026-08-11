@@ -28,7 +28,7 @@
     "generateStats": "node scripts/generateStats.cjs"
   },
   "dependencies": {
-    "csv-parse": "^7.0.1",
+    "csv-parse": "^7.0.2",
     "csv-stringify": "^6.8.1",
     "octokit": "^5.0.5",
     "yaml": "^2.9.0"
